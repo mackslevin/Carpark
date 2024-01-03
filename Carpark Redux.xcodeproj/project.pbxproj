@@ -19,6 +19,7 @@
 		0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9A52B44A2ED00FACACA /* HomeView.swift */; };
 		01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */; };
 		01F516422B45D8C60021B487 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516412B45D8C60021B487 /* LocationError.swift */; };
+		01F516442B45F2AD0021B487 /* AddButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516432B45F2AD0021B487 /* AddButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		0183B9A52B44A2ED00FACACA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDataItem.swift; sourceTree = "<group>"; };
 		01F516412B45D8C60021B487 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
+		01F516432B45F2AD0021B487 /* AddButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */,
 				017B60132B44DF6E005A3F96 /* ParkingSpot.swift */,
 				01F516412B45D8C60021B487 /* LocationError.swift */,
+				01F516432B45F2AD0021B487 /* AddButtonStyle.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F516442B45F2AD0021B487 /* AddButtonStyle.swift in Sources */,
 				017B60172B44E0E4005A3F96 /* Utility.swift in Sources */,
 				01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */,
 				0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */,

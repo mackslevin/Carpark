@@ -21,7 +21,7 @@ struct ParkingSpotAnnotationLabel: View {
                 Circle()
                     .foregroundStyle(.regularMaterial)
                     .shadow(radius: 3)
-                Image(systemName: "car")
+                Image(systemName: "car.fill")
                     .resizable().scaledToFit()
                     .padding(12)
                     .foregroundStyle(.tint)

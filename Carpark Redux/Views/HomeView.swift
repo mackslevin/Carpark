@@ -15,7 +15,6 @@ struct HomeView: View {
     @Environment(\.modelContext) var modelContext
     @Query var spots: [ParkingSpot]
     @State private var position: MapCameraPosition = .automatic
-    @State private var locationManager = CLLocationManager()
     @ObservedObject var locationModel = LocationModel()
     
     @State private var selectedSpot: ParkingSpot?
@@ -31,12 +30,30 @@ struct HomeView: View {
                     Annotation("Parking Spot", coordinate: spot.coordinate) {
                         ParkingSpotAnnotationLabel(spot: spot) { spot in
                             selectedSpot = spot
-                            isShowingSpotDetail = true
+                            withAnimation(.bouncy) {
+                                isShowingSpotDetail = true
+                            }
                         }
                     }
                 }
             }
         }
+        .overlay(alignment: .bottom, content: {
+            Button {
+                setParkingSpot()
+            } label: {
+                ZStack {
+                    Circle()
+                        .foregroundStyle(.thickMaterial)
+                        .shadow(radius: 5)
+                    Image(systemName: "plus.circle.fill")
+                        .resizable().scaledToFit()
+                        .padding()
+                }
+                .frame(width: 88)
+            }
+            .buttonStyle(AddButtonStyle())
+        })
         .onAppear { setup() }
         .sheet(isPresented: $isShowingSpotDetail, content: {
             if let selectedSpot {
@@ -99,6 +116,13 @@ struct HomeView: View {
         }
         
         return nil
+    }
+    
+    func setParkingSpot() {
+        if let userLocation = locationModel.locationManager.location {
+            let newSpot = ParkingSpot(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+            modelContext.insert(newSpot)
+        }
     }
 }
 

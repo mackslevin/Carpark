@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 class LocationModel: NSObject, ObservableObject {
-    private let locationManager = CLLocationManager()
+    @Published var locationManager = CLLocationManager()
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     override init() {
