@@ -45,6 +45,7 @@ struct SpotDetailView: View {
                 }
                 .frame(height: 200)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
+                
                 Text("\(spot.latitude), \(spot.longitude)")
                     .foregroundStyle(.secondary)
             }
@@ -76,7 +77,9 @@ struct SpotDetailView: View {
                 }
                 
                 Button {
-                    
+                    if let url = URL(string: "maps://?saddr=&daddr=\(spot.latitude),\(spot.longitude)") {
+                        UIApplication.shared.open(url)
+                    }
                 } label: {
                     HStack {
                         Spacer()
@@ -110,8 +113,8 @@ struct SpotDetailView: View {
         .background {
             Rectangle()
                 .ignoresSafeArea()
-                .foregroundStyle(colorScheme == .light ? Color.accentColor : Color.black)
-                .opacity(colorScheme == .light ? 0.05 : 1)
+                .foregroundStyle(colorScheme == .light ? Color.accentColor : Color.clear)
+                .opacity(0.05)
         }
         .task {
             await setNearText()
