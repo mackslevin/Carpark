@@ -22,10 +22,13 @@ struct Carpark_ReduxApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    
+    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
 
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .tint(Utility.color(forCustomAccentColor: customAccentColor))
         }
         .modelContainer(sharedModelContainer)
     }

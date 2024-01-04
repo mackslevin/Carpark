@@ -11,6 +11,9 @@ import MapKit
 struct SpotDetailView: View {
     @Bindable var spot: ParkingSpot
     
+    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
+    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) var modelContext
@@ -38,7 +41,7 @@ struct SpotDetailView: View {
                     Text(placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(placemark!.name!)")
                         .font(.title)
                         .bold()
-                        .foregroundStyle(.accent)
+                        .foregroundStyle(.tint)
                     
                     Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
                         .foregroundStyle(.secondary)
@@ -46,6 +49,7 @@ struct SpotDetailView: View {
                     Map {
                         Marker(spot.date.formatted(), systemImage: "car.fill", coordinate: spot.coordinate)
                     }
+                    .mapStyle(Utility.mapStyle(forMapPreference: mapPreference))
                     .frame(height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     
@@ -153,8 +157,8 @@ struct SpotDetailView: View {
         }
         .background {
             Rectangle()
+                .fill(colorScheme == .light ? Utility.color(forCustomAccentColor: customAccentColor) : Color.clear)
                 .ignoresSafeArea()
-                .foregroundStyle(colorScheme == .light ? Color.accentColor : Color.clear)
                 .opacity(0.05)
         }
     }

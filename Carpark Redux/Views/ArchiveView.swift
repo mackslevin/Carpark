@@ -35,13 +35,6 @@ struct ArchiveView: View {
             }
             .navigationTitle("Past Parking Spots")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                }
-            }
         }
     }
 }

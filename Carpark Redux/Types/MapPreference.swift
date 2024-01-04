@@ -14,3 +14,5 @@ enum MapPreference: String, CaseIterable, Identifiable, Codable {
         rawValue
     }
 }
+
+
