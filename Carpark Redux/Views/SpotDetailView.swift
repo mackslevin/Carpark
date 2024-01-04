@@ -20,142 +20,143 @@ struct SpotDetailView: View {
     @State private var isShowingDeleteWarning = false
     
     var body: some View {
-        VStack(spacing: 20){
-            
-            HStack {
-                Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.body).bold()
-                }
-            }
-            
-            VStack(alignment: .leading) {
+        ScrollView {
+            VStack(spacing: 20){
                 
-                Text(placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(placemark!.name!)")
-                    .font(.title)
-                    .bold()
-                    .foregroundStyle(.accent)
-                
-                Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
-                    .foregroundStyle(.secondary)
-                    .fontWeight(.medium)
-                Map {
-                    Marker(spot.date.formatted(), systemImage: "car.fill", coordinate: spot.coordinate)
-                }
-                .frame(height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                
-                
-                Menu {
-                    Button("Copy Coordinates") {
-                        UIPasteboard.general.string = "\(spot.latitude), \(spot.longitude)"
-                    }
-                } label: {
-                    Text("\(spot.latitude), \(spot.longitude)")
-                }
-                .tint(.secondary)
-
-
-                
-                
-            }
-            .multilineTextAlignment(.leading)
-            
-            VStack(spacing: 12) {
-                if spot.notes.isEmpty && !showNotesEvenThoughEmpty {
+                HStack {
+                    Spacer()
                     Button {
-                        withAnimation {
-                            showNotesEvenThoughEmpty = true
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.body).bold()
+                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    
+                    Text(placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(placemark!.name!)")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.accent)
+                    
+                    Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
+                        .foregroundStyle(.secondary)
+                        .fontWeight(.medium)
+                    Map {
+                        Marker(spot.date.formatted(), systemImage: "car.fill", coordinate: spot.coordinate)
+                    }
+                    .frame(height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    
+                    
+                    Menu {
+                        Button("Copy Coordinates") {
+                            UIPasteboard.general.string = "\(spot.latitude), \(spot.longitude)"
+                        }
+                    } label: {
+                        Text("\(spot.latitude), \(spot.longitude)")
+                    }
+                    .tint(.secondary)
+
+
+                    
+                    
+                }
+                .multilineTextAlignment(.leading)
+                
+                VStack(spacing: 12) {
+                    if spot.notes.isEmpty && !showNotesEvenThoughEmpty {
+                        Button {
+                            withAnimation {
+                                showNotesEvenThoughEmpty = true
+                            }
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text("Add Notes")
+                                    .bold()
+                                Spacer()
+                            }
+                        }
+                        .buttonStyle(.bordered)
+                    } else {
+                        VStack(alignment: .leading) {
+                            Text("Notes")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.secondary)
+                            TextField("...", text: $spot.notes, axis: .vertical)
+                                .textFieldStyle(.roundedBorder)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .padding(.bottom)
+                    }
+                    
+                    Button {
+                        if let url = URL(string: "maps://?saddr=&daddr=\(spot.latitude),\(spot.longitude)") {
+                            UIApplication.shared.open(url)
                         }
                     } label: {
                         HStack {
                             Spacer()
-                            Text("Add Notes")
-                                .bold()
+                            Label("Get Directions", systemImage: "arrow.triangle.turn.up.right.circle")
                             Spacer()
                         }
                     }
                     .buttonStyle(.bordered)
-                } else {
-                    VStack(alignment: .leading) {
-                        Text("Notes")
-                            .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
-                        TextField("...", text: $spot.notes, axis: .vertical)
-                            .textFieldStyle(.roundedBorder)
-                            .multilineTextAlignment(.leading)
+                    .bold()
+                    
+                    if let url = URL(string: "http://maps.apple.com/?ll=\(spot.latitude),\(spot.longitude)") {
+                        ShareLink(item: url) {
+                            HStack {
+                                Spacer()
+                                Label("Share Location", systemImage: "square.and.arrow.up")
+                                Spacer()
+                            }
+                            .bold()
+                        }
+                        .buttonStyle(.bordered)
                     }
-                    .padding(.bottom)
-                }
-                
-                Button {
-                    if let url = URL(string: "maps://?saddr=&daddr=\(spot.latitude),\(spot.longitude)") {
-                        UIApplication.shared.open(url)
-                    }
-                } label: {
-                    HStack {
-                        Spacer()
-                        Label("Get Directions", systemImage: "arrow.triangle.turn.up.right.circle")
-                        Spacer()
-                    }
-                }
-                .buttonStyle(.bordered)
-                .bold()
-                
-                if let url = URL(string: "http://maps.apple.com/?ll=\(spot.latitude),\(spot.longitude)") {
-                    ShareLink(item: url) {
+                    
+                    Button(role: .destructive) {
+                        isShowingDeleteWarning = true
+                    } label: {
                         HStack {
                             Spacer()
-                            Label("Share Location", systemImage: "square.and.arrow.up")
+                            Label("Delete Parking Spot", systemImage: "trash")
                             Spacer()
                         }
-                        .bold()
                     }
-                    .buttonStyle(.bordered)
+                    .bold()
+                    .buttonStyle(.borderedProminent)
                 }
+                .padding(.vertical)
                 
-                Button(role: .destructive) {
-                    isShowingDeleteWarning = true
-                } label: {
-                    HStack {
-                        Spacer()
-                        Label("Delete Parking Spot", systemImage: "trash")
-                        Spacer()
-                    }
-                }
-                .bold()
-                .buttonStyle(.borderedProminent)
+                
+                Spacer()
             }
-            .padding(.vertical)
-            
-            
-            Spacer()
+            .multilineTextAlignment(.center)
+            .padding()
+            .fontDesign(.rounded)
+            .task {
+                await setPlacemark()
+            }
+            .alert("Are you sure you want to delete this spot?", isPresented: $isShowingDeleteWarning) {
+                Button(role: .destructive) {
+                    delete()
+                } label: {
+                    Text("Delete")
+                }
+            } message: {
+                Text("This action cannot be undone. If there is a previous parking spot, that spot will now be displayed instead.")
+            }
         }
-        .multilineTextAlignment(.center)
-        .padding()
-        .fontDesign(.rounded)
         .background {
             Rectangle()
                 .ignoresSafeArea()
                 .foregroundStyle(colorScheme == .light ? Color.accentColor : Color.clear)
                 .opacity(0.05)
         }
-        .task {
-            await setPlacemark()
-        }
-        .alert("Are you sure you want to delete this spot?", isPresented: $isShowingDeleteWarning) {
-            Button(role: .destructive) {
-                delete()
-            } label: {
-                Text("Delete")
-            }
-        } message: {
-            Text("This action cannot be undone. If there is a previous parking spot, that spot will now be displayed instead.")
-        }
-
     }
     
     func setPlacemark() async {
