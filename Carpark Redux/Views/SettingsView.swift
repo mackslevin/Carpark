@@ -7,13 +7,7 @@
 
 import SwiftUI
 
-enum MapPreference: String, CaseIterable, Identifiable, Codable {
-    case hybrid, imagery, standard
-    
-    var id: String {
-        rawValue
-    }
-}
+
 
 struct SettingsView: View {
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
@@ -41,6 +35,7 @@ struct SettingsView: View {
                 
             }
             .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

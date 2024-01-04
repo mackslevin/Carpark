@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1352B472ADD008D5E81 /* SettingsView.swift */; };
+		012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1372B47370B008D5E81 /* MapPreference.swift */; };
 		017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60132B44DF6E005A3F96 /* ParkingSpot.swift */; };
 		017B60172B44E0E4005A3F96 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60162B44E0E4005A3F96 /* Utility.swift */; };
 		017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60182B44EA7B005A3F96 /* LocationModel.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		012CF1352B472ADD008D5E81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		012CF1372B47370B008D5E81 /* MapPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPreference.swift; sourceTree = "<group>"; };
 		017B60132B44DF6E005A3F96 /* ParkingSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
 		017B60162B44E0E4005A3F96 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		017B60182B44EA7B005A3F96 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				017B60132B44DF6E005A3F96 /* ParkingSpot.swift */,
 				01F516412B45D8C60021B487 /* LocationError.swift */,
 				01F516432B45F2AD0021B487 /* AddButtonStyle.swift */,
+				012CF1372B47370B008D5E81 /* MapPreference.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				017B60172B44E0E4005A3F96 /* Utility.swift in Sources */,
 				01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */,
 				0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */,
+				012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */,
 				017B601D2B44F45D005A3F96 /* SpotDetailView.swift in Sources */,
 				017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */,
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,

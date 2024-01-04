@@ -13,6 +13,8 @@ import MapKit
 struct HomeView: View {
     @AppStorage(Utility.dataMigratedFromUIKit) var hasMigratedUserData = false
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
+    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
+    
     @Environment(\.modelContext) var modelContext
     @Query var spots: [ParkingSpot]
     @State private var position: MapCameraPosition = .automatic
@@ -45,7 +47,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .mapStyle(.standard)
+            .mapStyle(mapStyle(forMapPreference: mapPreference))
         }
         .overlay(alignment: .bottom, content: {
             HStack {
@@ -122,6 +124,7 @@ struct HomeView: View {
                 .accessibilityLabel(Text("Zoom in to parking spot"))
                 .sensoryFeedback(.increase, trigger: secondaryHaptic)
             }
+            .padding(.bottom)
             
         })
         .overlay(alignment: .topLeading, content: {
@@ -134,7 +137,7 @@ struct HomeView: View {
                         .shadow(radius: 5)
                     Image(systemName: "gear")
                         .resizable().scaledToFit()
-                        .padding(11)
+                        .padding(8)
                 }
                 .frame(width: 44)
                 .bold()
@@ -235,6 +238,17 @@ struct HomeView: View {
         )
         
         position = .region(MKCoordinateRegion(center: center, span: span))
+    }
+    
+    func mapStyle(forMapPreference mapPreference: MapPreference) -> MapStyle {
+        switch mapPreference {
+            case .hybrid:
+                MapStyle.hybrid
+            case .imagery:
+                MapStyle.imagery
+            case .standard:
+                MapStyle.standard
+        }
     }
 }
 
