@@ -32,10 +32,6 @@ struct SpotDetailView: View {
                 }
             }
             
-            
-            
-            
-            
             VStack(alignment: .leading) {
                 
                 Text(placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(placemark!.name!)")
@@ -52,8 +48,19 @@ struct SpotDetailView: View {
                 .frame(height: 200)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 
-                Text("\(spot.latitude), \(spot.longitude)")
-                    .foregroundStyle(.secondary)
+                
+                Menu {
+                    Button("Copy Coordinates") {
+                        UIPasteboard.general.string = "\(spot.latitude), \(spot.longitude)"
+                    }
+                } label: {
+                    Text("\(spot.latitude), \(spot.longitude)")
+                }
+                .tint(.secondary)
+
+
+                
+                
             }
             .multilineTextAlignment(.leading)
             
@@ -97,18 +104,6 @@ struct SpotDetailView: View {
                 .buttonStyle(.bordered)
                 .bold()
                 
-//                Button {
-//                    // TODO
-//                } label: {
-//                    HStack {
-//                        Spacer()
-//                        Label("Share Location", systemImage: "square.and.arrow.up")
-//                        Spacer()
-//                    }
-//                    .bold()
-//                }
-//                .buttonStyle(.bordered)
-                
                 if let url = URL(string: "http://maps.apple.com/?ll=\(spot.latitude),\(spot.longitude)") {
                     ShareLink(item: url) {
                         HStack {
@@ -120,7 +115,6 @@ struct SpotDetailView: View {
                     }
                     .buttonStyle(.bordered)
                 }
-                
                 
                 Button(role: .destructive) {
                     isShowingDeleteWarning = true

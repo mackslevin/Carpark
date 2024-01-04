@@ -28,6 +28,8 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             Map(position: $position) {
+                UserAnnotation()
+                
                 if let spot = selectedSpot {
                     Annotation("Parking Spot", coordinate: spot.coordinate) {
                         ParkingSpotAnnotationLabel(spot: spot) { spot in
@@ -41,20 +43,66 @@ struct HomeView: View {
             }
         }
         .overlay(alignment: .bottom, content: {
-            Button {
-                setParkingSpot()
-            } label: {
-                ZStack {
-                    Circle()
-                        .foregroundStyle(.thickMaterial)
-                        .shadow(radius: 5)
-                    Image(systemName: "plus.circle.fill")
-                        .resizable().scaledToFit()
-                        .padding()
+            HStack {
+                Button {
+                    withAnimation {
+                        zoomOut()
+                    }
+                } label: {
+                    ZStack {
+                        Circle()
+                            .foregroundStyle(.thickMaterial)
+                            .shadow(radius: 5)
+                        Image(systemName: "arrow.left.and.right.circle.fill")
+                            .resizable().scaledToFit()
+                            .padding(8)
+                    }
+                    .frame(width: 44)
                 }
-                .frame(width: 88)
+                .buttonStyle(AddButtonStyle())
+                .padding()
+                
+                Spacer()
+                
+                Button {
+                    withAnimation {
+                        setParkingSpot()
+                        zoomOut()
+                    }
+                } label: {
+                    ZStack {
+                        Circle()
+                            .foregroundStyle(.thickMaterial)
+                            .shadow(radius: 5)
+                        Image(systemName: "plus.circle.fill")
+                            .resizable().scaledToFit()
+                            .padding()
+                    }
+                    .frame(width: 88)
+                }
+                .buttonStyle(AddButtonStyle())
+                
+                Spacer()
+                
+                Button {
+                    withAnimation {
+                        position = .automatic
+                    }
+                } label: {
+                    ZStack {
+                        Circle()
+                            .foregroundStyle(.thickMaterial)
+                            .shadow(radius: 5)
+                        Image(systemName: "car.circle.fill")
+                            .resizable().scaledToFit()
+                            .padding(8)
+                    }
+                    .frame(width: 44)
+                }
+                .buttonStyle(AddButtonStyle())
+                .padding()
             }
-            .buttonStyle(AddButtonStyle())
+            
         })
         .overlay(alignment: .topLeading, content: {
             Button {
@@ -115,9 +163,9 @@ struct HomeView: View {
             hasMigratedUserData = true
         }
         
-        position = .userLocation(fallback: .automatic)
-        
         selectedSpot = mostRecentSpot()
+        
+        zoomOut()
     }
     
     func mostRecentSpot() -> ParkingSpot? {
@@ -145,6 +193,27 @@ struct HomeView: View {
             let newSpot = ParkingSpot(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
             modelContext.insert(newSpot)
         }
+    }
+    
+    func zoomOut() {
+        guard let userCoords = locationModel.locationManager.location?.coordinate, let spotCoords = selectedSpot?.coordinate else { return }
+        
+        let minLat = min(userCoords.latitude, spotCoords.latitude)
+        let minLong = min(userCoords.longitude, spotCoords.longitude)
+        let maxLat = max(userCoords.latitude, spotCoords.latitude)
+        let maxLong = max(userCoords.longitude, spotCoords.longitude)
+        
+        let center = CLLocationCoordinate2D(
+            latitude: (minLat + maxLat) / 2,
+            longitude: (minLong + maxLong) / 2
+        )
+        
+        let span = MKCoordinateSpan(
+            latitudeDelta: (maxLat - minLat) * 1.5,
+            longitudeDelta: (maxLong - minLong) * 1.5
+        )
+        
+        position = .region(MKCoordinateRegion(center: center, span: span))
     }
 }
 
