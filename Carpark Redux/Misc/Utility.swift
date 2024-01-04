@@ -40,8 +40,8 @@ struct Utility {
                 Color.brown
             case .cyan:
                 Color.cyan
-            case .mint:
-                Color.mint
+            case .green:
+                Color.green
             case .orange:
                 Color.orange
             case .purple:
@@ -65,8 +65,8 @@ struct Utility {
                 Color.brown
             case .cyan:
                 Color.cyan
-            case .mint:
-                Color.mint
+            case .green:
+                Color.green
             case .orange:
                 Color.orange
             case .purple:

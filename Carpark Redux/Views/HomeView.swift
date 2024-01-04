@@ -46,6 +46,7 @@ struct HomeView: View {
                             }
                         }
                     }
+                    
                 }
             }
             .mapStyle(Utility.mapStyle(forMapPreference: mapPreference))
@@ -72,7 +73,7 @@ struct HomeView: View {
                 }
                 .buttonStyle(AddButtonStyle())
                 .padding()
-                .accessibilityLabel(Text("Zoom to see both user location and parking spot"))
+                .accessibilityLabel(Text("Zoom to show both user location and parking spot"))
                 .sensoryFeedback(.increase, trigger: secondaryHaptic)
                 
                 Spacer()
@@ -190,7 +191,11 @@ struct HomeView: View {
         
         selectedSpot = mostRecentSpot()
         
-        zoomOut()
+        if spots.isEmpty {
+            position = .userLocation(fallback: .automatic)
+        } else {
+            zoomOut()
+        }
     }
     
     func mostRecentSpot() -> ParkingSpot? {
