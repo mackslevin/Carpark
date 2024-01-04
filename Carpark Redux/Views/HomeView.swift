@@ -23,6 +23,8 @@ struct HomeView: View {
     @State private var locationError: LocationError?
     @State private var isShowingLocationError = false
     
+    @State private var isShowingSettings = false
+    
     var body: some View {
         ZStack {
             Map(position: $position) {
@@ -54,11 +56,31 @@ struct HomeView: View {
             }
             .buttonStyle(AddButtonStyle())
         })
+        .overlay(alignment: .topLeading, content: {
+            Button {
+                isShowingSettings = true
+            } label: {
+                ZStack {
+                    Circle()
+                        .foregroundStyle(.thickMaterial)
+                        .shadow(radius: 5)
+                    Image(systemName: "gear")
+                        .resizable().scaledToFit()
+                        .padding(8)
+                }
+                .frame(width: 44)
+            }
+            .buttonStyle(AddButtonStyle())
+            .padding()
+        })
         .onAppear { setup() }
         .sheet(isPresented: $isShowingSpotDetail, content: {
             if let selectedSpot {
                 SpotDetailView(spot: selectedSpot)
             }
+        })
+        .sheet(isPresented: $isShowingSettings, content: {
+            SettingsView()
         })
         .onChange(of: spots) { _, _ in
             selectedSpot = mostRecentSpot()

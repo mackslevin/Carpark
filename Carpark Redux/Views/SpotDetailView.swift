@@ -15,31 +15,37 @@ struct SpotDetailView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) var modelContext
     
-    @State private var nearText: String? = nil
+    @State private var placemark: CLPlacemark? = nil
     @State private var showNotesEvenThoughEmpty = false
     @State private var isShowingDeleteWarning = false
     
     var body: some View {
         VStack(spacing: 20){
-            VStack {
-                HStack {
-                    Spacer()
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.body).bold()
-                    }
+            
+            HStack {
+                Spacer()
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.body).bold()
                 }
-                
-                Text(nearText == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(nearText!)")
-                    .font(.title)
-                    .bold()
-                    .foregroundStyle(.accent)
             }
             
             
+            
+            
+            
             VStack(alignment: .leading) {
+                
+                Text(placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(placemark!.name!)")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(.accent)
+                
+                Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.medium)
                 Map {
                     Marker(spot.date.formatted(), systemImage: "car.fill", coordinate: spot.coordinate)
                 }
@@ -49,6 +55,7 @@ struct SpotDetailView: View {
                 Text("\(spot.latitude), \(spot.longitude)")
                     .foregroundStyle(.secondary)
             }
+            .multilineTextAlignment(.leading)
             
             VStack(spacing: 12) {
                 if spot.notes.isEmpty && !showNotesEvenThoughEmpty {
@@ -90,12 +97,37 @@ struct SpotDetailView: View {
                 .buttonStyle(.bordered)
                 .bold()
                 
+//                Button {
+//                    // TODO
+//                } label: {
+//                    HStack {
+//                        Spacer()
+//                        Label("Share Location", systemImage: "square.and.arrow.up")
+//                        Spacer()
+//                    }
+//                    .bold()
+//                }
+//                .buttonStyle(.bordered)
+                
+                if let url = URL(string: "http://maps.apple.com/?ll=\(spot.latitude),\(spot.longitude)") {
+                    ShareLink(item: url) {
+                        HStack {
+                            Spacer()
+                            Label("Share Location", systemImage: "square.and.arrow.up")
+                            Spacer()
+                        }
+                        .bold()
+                    }
+                    .buttonStyle(.bordered)
+                }
+                
+                
                 Button(role: .destructive) {
                     isShowingDeleteWarning = true
                 } label: {
                     HStack {
                         Spacer()
-                        Label("Delete Spot", systemImage: "trash")
+                        Label("Delete Parking Spot", systemImage: "trash")
                         Spacer()
                     }
                 }
@@ -117,7 +149,7 @@ struct SpotDetailView: View {
                 .opacity(0.05)
         }
         .task {
-            await setNearText()
+            await setPlacemark()
         }
         .alert("Are you sure you want to delete this spot?", isPresented: $isShowingDeleteWarning) {
             Button(role: .destructive) {
@@ -131,11 +163,11 @@ struct SpotDetailView: View {
 
     }
     
-    func setNearText() async {
+    func setPlacemark() async {
         let location = CLLocation(latitude: spot.latitude, longitude: spot.longitude)
         let geocoder = CLGeocoder()
         if let placemark = try? await geocoder.reverseGeocodeLocation(location).first {
-            nearText = placemark.name
+            self.placemark = placemark
         }
     }
     

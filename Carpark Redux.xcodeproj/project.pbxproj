@@ -20,6 +20,7 @@
 		01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */; };
 		01F516422B45D8C60021B487 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516412B45D8C60021B487 /* LocationError.swift */; };
 		01F516442B45F2AD0021B487 /* AddButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516432B45F2AD0021B487 /* AddButtonStyle.swift */; };
+		01F516462B461BE20021B487 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516452B461BE20021B487 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDataItem.swift; sourceTree = "<group>"; };
 		01F516412B45D8C60021B487 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
 		01F516432B45F2AD0021B487 /* AddButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonStyle.swift; sourceTree = "<group>"; };
+		01F516452B461BE20021B487 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				0183B9A52B44A2ED00FACACA /* HomeView.swift */,
 				017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */,
 				017B601C2B44F45D005A3F96 /* SpotDetailView.swift */,
+				01F516452B461BE20021B487 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,
 				0183B9982B44A27100FACACA /* Item.swift in Sources */,
 				01F516422B45D8C60021B487 /* LocationError.swift in Sources */,
+				01F516462B461BE20021B487 /* SettingsView.swift in Sources */,
 				017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */,
 				0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */,
 			);
