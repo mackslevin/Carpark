@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1352B472ADD008D5E81 /* SettingsView.swift */; };
 		017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60132B44DF6E005A3F96 /* ParkingSpot.swift */; };
 		017B60172B44E0E4005A3F96 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60162B44E0E4005A3F96 /* Utility.swift */; };
 		017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60182B44EA7B005A3F96 /* LocationModel.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012CF1352B472ADD008D5E81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		017B60132B44DF6E005A3F96 /* ParkingSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
 		017B60162B44E0E4005A3F96 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		017B60182B44EA7B005A3F96 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				017B601C2B44F45D005A3F96 /* SpotDetailView.swift */,
 				01F516452B461BE20021B487 /* ArchiveView.swift */,
 				01F516472B4647360021B487 /* ArchivedSpotView.swift */,
+				012CF1352B472ADD008D5E81 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				017B601D2B44F45D005A3F96 /* SpotDetailView.swift in Sources */,
 				017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */,
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,
+				012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */,
 				0183B9982B44A27100FACACA /* Item.swift in Sources */,
 				01F516422B45D8C60021B487 /* LocationError.swift in Sources */,
 				01F516482B4647360021B487 /* ArchivedSpotView.swift in Sources */,

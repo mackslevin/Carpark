@@ -12,6 +12,7 @@ import MapKit
 
 struct HomeView: View {
     @AppStorage(Utility.dataMigratedFromUIKit) var hasMigratedUserData = false
+    @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
     @Environment(\.modelContext) var modelContext
     @Query var spots: [ParkingSpot]
     @State private var position: MapCameraPosition = .automatic
@@ -23,7 +24,7 @@ struct HomeView: View {
     @State private var locationError: LocationError?
     @State private var isShowingLocationError = false
     
-    @State private var isShowingArchive = false
+    @State private var isShowingSettings = false
     
     @State private var successHaptic = false
     @State private var secondaryHaptic = false
@@ -44,6 +45,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .mapStyle(.standard)
         }
         .overlay(alignment: .bottom, content: {
             HStack {
@@ -51,7 +53,9 @@ struct HomeView: View {
                     withAnimation {
                         zoomOut()
                     }
-                    secondaryHaptic.toggle()
+                    if shouldUseHaptics {
+                        secondaryHaptic.toggle()
+                    }
                 } label: {
                     ZStack {
                         Circle()
@@ -75,7 +79,9 @@ struct HomeView: View {
                         setParkingSpot()
                         zoomOut()
                     }
-                    successHaptic.toggle()
+                    if shouldUseHaptics {
+                        successHaptic.toggle()
+                    }
                 } label: {
                     ZStack {
                         Circle()
@@ -97,7 +103,9 @@ struct HomeView: View {
                     withAnimation {
                         position = .automatic
                     }
-                    secondaryHaptic.toggle()
+                    if shouldUseHaptics {
+                        secondaryHaptic.toggle()
+                    }
                 } label: {
                     ZStack {
                         Circle()
@@ -118,13 +126,13 @@ struct HomeView: View {
         })
         .overlay(alignment: .topLeading, content: {
             Button {
-                isShowingArchive = true
+                isShowingSettings = true
             } label: {
                 ZStack {
                     Circle()
                         .foregroundStyle(.thickMaterial)
                         .shadow(radius: 5)
-                    Image(systemName: "list.bullet")
+                    Image(systemName: "gear")
                         .resizable().scaledToFit()
                         .padding(11)
                 }
@@ -140,8 +148,8 @@ struct HomeView: View {
                 SpotDetailView(spot: selectedSpot)
             }
         })
-        .sheet(isPresented: $isShowingArchive, content: {
-            ArchiveView()
+        .sheet(isPresented: $isShowingSettings, content: {
+            SettingsView()
         })
         .onChange(of: spots) { _, _ in
             selectedSpot = mostRecentSpot()
