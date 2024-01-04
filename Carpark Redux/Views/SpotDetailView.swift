@@ -88,6 +88,7 @@ struct SpotDetailView: View {
                             .textFieldStyle(.roundedBorder)
                             .multilineTextAlignment(.leading)
                     }
+                    .padding(.bottom)
                 }
                 
                 Button {

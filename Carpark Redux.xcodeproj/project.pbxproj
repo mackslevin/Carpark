@@ -20,7 +20,8 @@
 		01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */; };
 		01F516422B45D8C60021B487 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516412B45D8C60021B487 /* LocationError.swift */; };
 		01F516442B45F2AD0021B487 /* AddButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516432B45F2AD0021B487 /* AddButtonStyle.swift */; };
-		01F516462B461BE20021B487 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516452B461BE20021B487 /* SettingsView.swift */; };
+		01F516462B461BE20021B487 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516452B461BE20021B487 /* ArchiveView.swift */; };
+		01F516482B4647360021B487 /* ArchivedSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516472B4647360021B487 /* ArchivedSpotView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +41,8 @@
 		01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDataItem.swift; sourceTree = "<group>"; };
 		01F516412B45D8C60021B487 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
 		01F516432B45F2AD0021B487 /* AddButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonStyle.swift; sourceTree = "<group>"; };
-		01F516452B461BE20021B487 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		01F516452B461BE20021B487 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
+		01F516472B4647360021B487 /* ArchivedSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedSpotView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +122,8 @@
 				0183B9A52B44A2ED00FACACA /* HomeView.swift */,
 				017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */,
 				017B601C2B44F45D005A3F96 /* SpotDetailView.swift */,
-				01F516452B461BE20021B487 /* SettingsView.swift */,
+				01F516452B461BE20021B487 /* ArchiveView.swift */,
+				01F516472B4647360021B487 /* ArchivedSpotView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,7 +207,8 @@
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,
 				0183B9982B44A27100FACACA /* Item.swift in Sources */,
 				01F516422B45D8C60021B487 /* LocationError.swift in Sources */,
-				01F516462B461BE20021B487 /* SettingsView.swift in Sources */,
+				01F516482B4647360021B487 /* ArchivedSpotView.swift in Sources */,
+				01F516462B461BE20021B487 /* ArchiveView.swift in Sources */,
 				017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */,
 				0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */,
 			);
@@ -347,24 +351,28 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carpark Redux/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Carpark;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access is needed in order to mark your parking spot and to display directions";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is needed in order to mark your parking spot and to display directions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnslevin.Carpark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,24 +391,28 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Carpark Redux/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Carpark;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access is needed in order to mark your parking spot and to display directions";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is needed in order to mark your parking spot and to display directions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnslevin.Carpark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

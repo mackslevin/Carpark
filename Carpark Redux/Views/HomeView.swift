@@ -23,7 +23,10 @@ struct HomeView: View {
     @State private var locationError: LocationError?
     @State private var isShowingLocationError = false
     
-    @State private var isShowingSettings = false
+    @State private var isShowingArchive = false
+    
+    @State private var successHaptic = false
+    @State private var secondaryHaptic = false
     
     var body: some View {
         ZStack {
@@ -48,6 +51,7 @@ struct HomeView: View {
                     withAnimation {
                         zoomOut()
                     }
+                    secondaryHaptic.toggle()
                 } label: {
                     ZStack {
                         Circle()
@@ -61,6 +65,8 @@ struct HomeView: View {
                 }
                 .buttonStyle(AddButtonStyle())
                 .padding()
+                .accessibilityLabel(Text("Zoom to see both user location and parking spot"))
+                .sensoryFeedback(.increase, trigger: secondaryHaptic)
                 
                 Spacer()
                 
@@ -69,6 +75,7 @@ struct HomeView: View {
                         setParkingSpot()
                         zoomOut()
                     }
+                    successHaptic.toggle()
                 } label: {
                     ZStack {
                         Circle()
@@ -81,6 +88,8 @@ struct HomeView: View {
                     .frame(width: 88)
                 }
                 .buttonStyle(AddButtonStyle())
+                .accessibilityLabel(Text("Park Here"))
+                .sensoryFeedback(.success, trigger: successHaptic)
                 
                 Spacer()
                 
@@ -88,6 +97,7 @@ struct HomeView: View {
                     withAnimation {
                         position = .automatic
                     }
+                    secondaryHaptic.toggle()
                 } label: {
                     ZStack {
                         Circle()
@@ -101,22 +111,25 @@ struct HomeView: View {
                 }
                 .buttonStyle(AddButtonStyle())
                 .padding()
+                .accessibilityLabel(Text("Zoom in to parking spot"))
+                .sensoryFeedback(.increase, trigger: secondaryHaptic)
             }
             
         })
         .overlay(alignment: .topLeading, content: {
             Button {
-                isShowingSettings = true
+                isShowingArchive = true
             } label: {
                 ZStack {
                     Circle()
                         .foregroundStyle(.thickMaterial)
                         .shadow(radius: 5)
-                    Image(systemName: "gear")
+                    Image(systemName: "list.bullet")
                         .resizable().scaledToFit()
-                        .padding(8)
+                        .padding(11)
                 }
                 .frame(width: 44)
+                .bold()
             }
             .buttonStyle(AddButtonStyle())
             .padding()
@@ -127,8 +140,8 @@ struct HomeView: View {
                 SpotDetailView(spot: selectedSpot)
             }
         })
-        .sheet(isPresented: $isShowingSettings, content: {
-            SettingsView()
+        .sheet(isPresented: $isShowingArchive, content: {
+            ArchiveView()
         })
         .onChange(of: spots) { _, _ in
             selectedSpot = mostRecentSpot()
