@@ -13,6 +13,7 @@ struct SettingsView: View {
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
     @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
     
     var body: some View {
         NavigationStack {
@@ -28,6 +29,8 @@ struct SettingsView: View {
                     
                     
                     Toggle("Haptic Feedback", isOn: $shouldUseHaptics)
+                    
+                    Toggle("Confirm Before Setting Parking Space", isOn: $shouldConfirmBeforeParking)
                 }
                 
                 Section("Appearance") {
@@ -49,7 +52,7 @@ struct SettingsView: View {
                 }
                 
                 Section("Data") {
-                    NavigationLink("Past parking spots") {
+                    NavigationLink("Past Parking Spots") {
                         ArchiveView()
                     }
                 }

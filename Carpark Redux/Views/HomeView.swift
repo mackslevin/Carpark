@@ -13,8 +13,9 @@ import MapKit
 struct HomeView: View {
     @AppStorage(Utility.dataMigratedFromUIKit) var hasMigratedUserData = false
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
-    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
+    @AppStorage("mapPreference") var mapPreference: MapPreference = .imagery
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
     
     @Environment(\.modelContext) var modelContext
     @Query var spots: [ParkingSpot]
@@ -28,6 +29,7 @@ struct HomeView: View {
     @State private var isShowingSettings = false
     @State private var successHaptic = false
     @State private var secondaryHaptic = false
+    @State private var isShowingParkConfirmation = false
     
     var body: some View {
         NavigationStack {
@@ -77,12 +79,16 @@ struct HomeView: View {
                     Spacer()
                     
                     Button {
-                        withAnimation {
-                            setParkingSpot()
-                            zoomOut()
-                        }
-                        if shouldUseHaptics {
-                            successHaptic.toggle()
+                        if shouldConfirmBeforeParking {
+                            isShowingParkConfirmation = true
+                        } else {
+                            withAnimation {
+                                setParkingSpot()
+                                zoomOut()
+                            }
+                            if shouldUseHaptics {
+                                successHaptic.toggle()
+                            }
                         }
                     } label: {
                         ZStack {
@@ -146,11 +152,6 @@ struct HomeView: View {
                 .padding()
             })
             .onAppear { setup() }
-//            .sheet(isPresented: $isShowingSpotDetail, content: {
-//                if let selectedSpot {
-//                    SpotDetailView(spot: selectedSpot)
-//                }
-//            })
             .sheet(isPresented: $isShowingSettings, content: {
                 SettingsView()
             })
@@ -158,6 +159,13 @@ struct HomeView: View {
                 selectedSpot = mostRecentSpot()
             }
             .alert(isPresented: $isShowingLocationError, error: locationError) {}
+            .alert("Are you sure you want to set the parking space at your current location?", isPresented: $isShowingParkConfirmation, actions: {
+                Button("Cancel"){}
+                Button("Set") {
+                    setParkingSpot()
+                }
+                .bold()
+            })
             .onChange(of: locationModel.authorizationStatus) { _, newValue in
                 print("^^ status changed \(newValue)")
                 switch newValue {
