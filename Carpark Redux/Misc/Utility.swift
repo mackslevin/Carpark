@@ -22,7 +22,7 @@ struct Utility {
             case .imagery:
                 MapStyle.imagery
             case .standard:
-                MapStyle.standard
+                MapStyle.standard(pointsOfInterest: .excludingAll)
         }
     }
     
