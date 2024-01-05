@@ -18,17 +18,14 @@ struct HomeView: View {
     
     @Environment(\.modelContext) var modelContext
     @Query var spots: [ParkingSpot]
-    @State private var position: MapCameraPosition = .automatic
     @ObservedObject var locationModel = LocationModel()
     
+    @State private var position: MapCameraPosition = .automatic
     @State private var selectedSpot: ParkingSpot?
     @State private var isShowingSpotDetail = false
-    
     @State private var locationError: LocationError?
     @State private var isShowingLocationError = false
-    
     @State private var isShowingSettings = false
-    
     @State private var successHaptic = false
     @State private var secondaryHaptic = false
     
@@ -199,11 +196,10 @@ struct HomeView: View {
     }
     
     func mostRecentSpot() -> ParkingSpot? {
-        let sortedSpots = spots.sorted(by: {$0.date > $1.date})
+        let sortedSpots = spots.sorted(by: { $0.date > $1.date })
         if let first = sortedSpots.first {
             return first
         }
-        
         return nil
     }
     

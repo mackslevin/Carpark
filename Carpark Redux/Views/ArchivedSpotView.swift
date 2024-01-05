@@ -23,6 +23,8 @@ struct ArchivedSpotView: View {
     @State private var showNotesEvenThoughEmpty = false
     @State private var isShowingDeleteWarning = false
     
+    @FocusState var notesFieldIsFocused: Bool
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -61,6 +63,7 @@ struct ArchivedSpotView: View {
                                 withAnimation {
                                     showNotesEvenThoughEmpty = true
                                 }
+                                notesFieldIsFocused = true
                             } label: {
                                 HStack {
                                     Spacer()
@@ -78,6 +81,16 @@ struct ArchivedSpotView: View {
                                 TextField("...", text: $spot.notes, axis: .vertical)
                                     .textFieldStyle(.roundedBorder)
                                     .multilineTextAlignment(.leading)
+                                    .focused($notesFieldIsFocused)
+                                    .toolbar {
+                                        ToolbarItemGroup(placement: .keyboard) {
+                                            Spacer()
+                                            Button("Done") {
+                                                notesFieldIsFocused = false
+                                            }
+                                            .bold()
+                                        }
+                                    }
                             }
                             .padding(.bottom)
                         }
