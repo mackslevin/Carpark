@@ -131,6 +131,7 @@ struct ParkingSpotDetailView: View {
                         }
                         .bold()
                         .buttonStyle(.borderedProminent)
+                        .tint(.red)
                     }
                     .padding(.vertical)
                     

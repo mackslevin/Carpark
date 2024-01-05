@@ -40,7 +40,7 @@ struct SettingsView: View {
                                 Circle()
                                     .opacity(0.8)
                                 Circle()
-                                    .fill(Utility.color(forCustomAccentColor: color))
+                                    .fill(Utility.color(forCustomAccentColor: color).gradient)
                                     .padding(color.id == customAccentColor.id ? 8 : 0)
                             }
                             .onTapGesture(perform: {
