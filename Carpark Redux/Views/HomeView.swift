@@ -13,7 +13,7 @@ import MapKit
 struct HomeView: View {
     @AppStorage(Utility.dataMigratedFromUIKit) var hasMigratedUserData = false
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
-    @AppStorage("mapPreference") var mapPreference: MapPreference = .imagery
+    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
     @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
     

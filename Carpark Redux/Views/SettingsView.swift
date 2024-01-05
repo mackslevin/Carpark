@@ -15,6 +15,8 @@ struct SettingsView: View {
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
     @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         NavigationStack {
             List {
@@ -66,6 +68,14 @@ struct SettingsView: View {
                     .foregroundStyle(.tint)
                     .ignoresSafeArea()
                     .opacity(0.05)
+            }
+            .toolbar {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .bold()
+                }
             }
         }
     }
