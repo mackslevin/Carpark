@@ -9,9 +9,8 @@ import SwiftUI
 import MapKit
 import SwiftData
 
-struct ArchivedSpotView: View {
+struct ParkingSpotDetailView: View {
     @Bindable var spot: ParkingSpot
-    
     @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
     
@@ -138,7 +137,8 @@ struct ArchivedSpotView: View {
                     
                     Spacer()
                 }
-                .navigationTitle(spot.date.formatted())
+                .navigationTitle("Parking Spot")
+                .navigationBarTitleDisplayMode(.inline)
                 .multilineTextAlignment(.center)
                 .padding()
                 .fontDesign(.rounded)

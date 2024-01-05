@@ -14,7 +14,6 @@
 		017B60172B44E0E4005A3F96 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60162B44E0E4005A3F96 /* Utility.swift */; };
 		017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60182B44EA7B005A3F96 /* LocationModel.swift */; };
 		017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */; };
-		017B601D2B44F45D005A3F96 /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B601C2B44F45D005A3F96 /* SpotDetailView.swift */; };
 		0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */; };
 		0183B9982B44A27100FACACA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9972B44A27100FACACA /* Item.swift */; };
 		0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0183B9992B44A27300FACACA /* Assets.xcassets */; };
@@ -24,7 +23,7 @@
 		01F516422B45D8C60021B487 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516412B45D8C60021B487 /* LocationError.swift */; };
 		01F516442B45F2AD0021B487 /* AddButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516432B45F2AD0021B487 /* AddButtonStyle.swift */; };
 		01F516462B461BE20021B487 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516452B461BE20021B487 /* ArchiveView.swift */; };
-		01F516482B4647360021B487 /* ArchivedSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516472B4647360021B487 /* ArchivedSpotView.swift */; };
+		01F516482B4647360021B487 /* ParkingSpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516472B4647360021B487 /* ParkingSpotDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		017B60162B44E0E4005A3F96 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		017B60182B44EA7B005A3F96 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpotAnnotationLabel.swift; sourceTree = "<group>"; };
-		017B601C2B44F45D005A3F96 /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 		0183B9902B44A27100FACACA /* Carpark Redux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carpark Redux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carpark_ReduxApp.swift; sourceTree = "<group>"; };
 		0183B9972B44A27100FACACA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -48,7 +46,7 @@
 		01F516412B45D8C60021B487 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
 		01F516432B45F2AD0021B487 /* AddButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonStyle.swift; sourceTree = "<group>"; };
 		01F516452B461BE20021B487 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
-		01F516472B4647360021B487 /* ArchivedSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedSpotView.swift; sourceTree = "<group>"; };
+		01F516472B4647360021B487 /* ParkingSpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpotDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,9 +127,8 @@
 			children = (
 				0183B9A52B44A2ED00FACACA /* HomeView.swift */,
 				017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */,
-				017B601C2B44F45D005A3F96 /* SpotDetailView.swift */,
 				01F516452B461BE20021B487 /* ArchiveView.swift */,
-				01F516472B4647360021B487 /* ArchivedSpotView.swift */,
+				01F516472B4647360021B487 /* ParkingSpotDetailView.swift */,
 				012CF1352B472ADD008D5E81 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -212,14 +209,13 @@
 				01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */,
 				0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */,
 				012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */,
-				017B601D2B44F45D005A3F96 /* SpotDetailView.swift in Sources */,
 				017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */,
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,
 				012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */,
 				0183B9982B44A27100FACACA /* Item.swift in Sources */,
 				012CF13A2B474FB8008D5E81 /* CustomAccentColor.swift in Sources */,
 				01F516422B45D8C60021B487 /* LocationError.swift in Sources */,
-				01F516482B4647360021B487 /* ArchivedSpotView.swift in Sources */,
+				01F516482B4647360021B487 /* ParkingSpotDetailView.swift in Sources */,
 				01F516462B461BE20021B487 /* ArchiveView.swift in Sources */,
 				017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */,
 				0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */,

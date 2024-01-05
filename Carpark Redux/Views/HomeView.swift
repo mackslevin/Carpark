@@ -30,144 +30,151 @@ struct HomeView: View {
     @State private var secondaryHaptic = false
     
     var body: some View {
-        ZStack {
-            Map(position: $position) {
-                UserAnnotation()
-                
-                if let spot = selectedSpot {
-                    Annotation("Parking Spot", coordinate: spot.coordinate) {
-                        ParkingSpotAnnotationLabel(spot: spot) { spot in
-                            selectedSpot = spot
-                            withAnimation(.bouncy) {
-                                isShowingSpotDetail = true
+        NavigationStack {
+            ZStack {
+                Map(position: $position) {
+                    UserAnnotation()
+                    
+                    if let spot = selectedSpot {
+                        Annotation("Parking Spot", coordinate: spot.coordinate) {
+                            ParkingSpotAnnotationLabel(spot: spot) { spot in
+                                selectedSpot = spot
+                                withAnimation(.bouncy) {
+                                    isShowingSpotDetail = true
+                                }
                             }
                         }
+                        
                     }
+                }
+                .mapStyle(Utility.mapStyle(forMapPreference: mapPreference))
+            }
+            .overlay(alignment: .bottom, content: {
+                HStack {
+                    Button {
+                        withAnimation {
+                            zoomOut()
+                        }
+                        if shouldUseHaptics {
+                            secondaryHaptic.toggle()
+                        }
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.thickMaterial)
+                                .shadow(radius: 5)
+                            Image(systemName: "arrow.left.and.right.circle.fill")
+                                .resizable().scaledToFit()
+                                .padding(8)
+                        }
+                        .frame(width: 44)
+                    }
+                    .buttonStyle(AddButtonStyle())
+                    .padding()
+                    .accessibilityLabel(Text("Zoom to show both user location and parking spot"))
+                    .sensoryFeedback(.increase, trigger: secondaryHaptic)
                     
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            setParkingSpot()
+                            zoomOut()
+                        }
+                        if shouldUseHaptics {
+                            successHaptic.toggle()
+                        }
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.thickMaterial)
+                                .shadow(radius: 5)
+                            Image(systemName: "plus.circle.fill")
+                                .resizable().scaledToFit()
+                                .padding()
+                        }
+                        .frame(width: 88)
+                    }
+                    .buttonStyle(AddButtonStyle())
+                    .accessibilityLabel(Text("Park Here"))
+                    .sensoryFeedback(.success, trigger: successHaptic)
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            position = .automatic
+                        }
+                        if shouldUseHaptics {
+                            secondaryHaptic.toggle()
+                        }
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.thickMaterial)
+                                .shadow(radius: 5)
+                            Image(systemName: "car.circle.fill")
+                                .resizable().scaledToFit()
+                                .padding(8)
+                        }
+                        .frame(width: 44)
+                    }
+                    .buttonStyle(AddButtonStyle())
+                    .padding()
+                    .accessibilityLabel(Text("Zoom in to parking spot"))
+                    .sensoryFeedback(.increase, trigger: secondaryHaptic)
                 }
-            }
-            .mapStyle(Utility.mapStyle(forMapPreference: mapPreference))
-        }
-        .overlay(alignment: .bottom, content: {
-            HStack {
+                .padding(.bottom)
+                
+            })
+            .overlay(alignment: .topLeading, content: {
                 Button {
-                    withAnimation {
-                        zoomOut()
-                    }
-                    if shouldUseHaptics {
-                        secondaryHaptic.toggle()
-                    }
+                    isShowingSettings = true
                 } label: {
                     ZStack {
                         Circle()
                             .foregroundStyle(.thickMaterial)
                             .shadow(radius: 5)
-                        Image(systemName: "arrow.left.and.right.circle.fill")
+                        Image(systemName: "gear")
                             .resizable().scaledToFit()
                             .padding(8)
                     }
                     .frame(width: 44)
+                    .bold()
                 }
                 .buttonStyle(AddButtonStyle())
                 .padding()
-                .accessibilityLabel(Text("Zoom to show both user location and parking spot"))
-                .sensoryFeedback(.increase, trigger: secondaryHaptic)
-                
-                Spacer()
-                
-                Button {
-                    withAnimation {
-                        setParkingSpot()
-                        zoomOut()
-                    }
-                    if shouldUseHaptics {
-                        successHaptic.toggle()
-                    }
-                } label: {
-                    ZStack {
-                        Circle()
-                            .foregroundStyle(.thickMaterial)
-                            .shadow(radius: 5)
-                        Image(systemName: "plus.circle.fill")
-                            .resizable().scaledToFit()
-                            .padding()
-                    }
-                    .frame(width: 88)
-                }
-                .buttonStyle(AddButtonStyle())
-                .accessibilityLabel(Text("Park Here"))
-                .sensoryFeedback(.success, trigger: successHaptic)
-                
-                Spacer()
-                
-                Button {
-                    withAnimation {
-                        position = .automatic
-                    }
-                    if shouldUseHaptics {
-                        secondaryHaptic.toggle()
-                    }
-                } label: {
-                    ZStack {
-                        Circle()
-                            .foregroundStyle(.thickMaterial)
-                            .shadow(radius: 5)
-                        Image(systemName: "car.circle.fill")
-                            .resizable().scaledToFit()
-                            .padding(8)
-                    }
-                    .frame(width: 44)
-                }
-                .buttonStyle(AddButtonStyle())
-                .padding()
-                .accessibilityLabel(Text("Zoom in to parking spot"))
-                .sensoryFeedback(.increase, trigger: secondaryHaptic)
+            })
+            .onAppear { setup() }
+//            .sheet(isPresented: $isShowingSpotDetail, content: {
+//                if let selectedSpot {
+//                    SpotDetailView(spot: selectedSpot)
+//                }
+//            })
+            .sheet(isPresented: $isShowingSettings, content: {
+                SettingsView()
+            })
+            .onChange(of: spots) { _, _ in
+                selectedSpot = mostRecentSpot()
             }
-            .padding(.bottom)
-            
-        })
-        .overlay(alignment: .topLeading, content: {
-            Button {
-                isShowingSettings = true
-            } label: {
-                ZStack {
-                    Circle()
-                        .foregroundStyle(.thickMaterial)
-                        .shadow(radius: 5)
-                    Image(systemName: "gear")
-                        .resizable().scaledToFit()
-                        .padding(8)
+            .alert(isPresented: $isShowingLocationError, error: locationError) {}
+            .onChange(of: locationModel.authorizationStatus) { _, newValue in
+                print("^^ status changed \(newValue)")
+                switch newValue {
+                    case .denied:
+                        locationError = .badAuthorization
+                        isShowingLocationError = true
+                    case .restricted:
+                        locationError = .badAuthorization
+                        isShowingLocationError = true
+                    default:
+                        setup()
                 }
-                .frame(width: 44)
-                .bold()
             }
-            .buttonStyle(AddButtonStyle())
-            .padding()
-        })
-        .onAppear { setup() }
-        .sheet(isPresented: $isShowingSpotDetail, content: {
-            if let selectedSpot {
-                SpotDetailView(spot: selectedSpot)
-            }
-        })
-        .sheet(isPresented: $isShowingSettings, content: {
-            SettingsView()
-        })
-        .onChange(of: spots) { _, _ in
-            selectedSpot = mostRecentSpot()
-        }
-        .alert(isPresented: $isShowingLocationError, error: locationError) {}
-        .onChange(of: locationModel.authorizationStatus) { _, newValue in
-            print("^^ status changed \(newValue)")
-            switch newValue {
-                case .denied:
-                    locationError = .badAuthorization
-                    isShowingLocationError = true
-                case .restricted:
-                    locationError = .badAuthorization
-                    isShowingLocationError = true
-                default:
-                    setup()
+            .navigationDestination(isPresented: $isShowingSpotDetail) {
+                if let selectedSpot {
+                    ParkingSpotDetailView(spot: selectedSpot)
+                }
             }
         }
     }

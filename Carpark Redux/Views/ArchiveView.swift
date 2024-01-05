@@ -18,7 +18,7 @@ struct ArchiveView: View {
             List {
                 ForEach(spots) { spot in
                     NavigationLink {
-                        ArchivedSpotView(spot: spot)
+                        ParkingSpotDetailView(spot: spot)
                     } label: {
                         VStack(alignment: .leading, content: {
                             Text(spot.date.formatted())
