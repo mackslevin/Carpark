@@ -14,7 +14,7 @@ struct Carpark_ReduxApp: App {
         let schema = Schema([
             ParkingSpot.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, cloudKitDatabase: .private("iCloud.com.johnslevin.Carpark"))
 
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])

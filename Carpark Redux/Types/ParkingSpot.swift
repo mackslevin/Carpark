@@ -13,8 +13,8 @@ import CoreLocation
 class ParkingSpot: Identifiable {
     let id = UUID()
     let date = Date.now
-    let latitude: Double
-    let longitude: Double
+    let latitude: Double = 0
+    let longitude: Double = 0
     var notes: String = ""
     
     init(latitude: Double, longitude: Double) {
