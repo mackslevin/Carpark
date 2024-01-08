@@ -14,6 +14,7 @@
 		017B60172B44E0E4005A3F96 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60162B44E0E4005A3F96 /* Utility.swift */; };
 		017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60182B44EA7B005A3F96 /* LocationModel.swift */; };
 		017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */; };
+		017E12FA2B4C75EE0057B77E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 017E12F92B4C75EE0057B77E /* .gitignore */; };
 		0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */; };
 		0183B9982B44A27100FACACA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9972B44A27100FACACA /* Item.swift */; };
 		0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0183B9992B44A27300FACACA /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		017B60162B44E0E4005A3F96 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		017B60182B44EA7B005A3F96 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpotAnnotationLabel.swift; sourceTree = "<group>"; };
+		017E12F92B4C75EE0057B77E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0183B9902B44A27100FACACA /* Carpark Redux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carpark Redux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carpark_ReduxApp.swift; sourceTree = "<group>"; };
 		0183B9972B44A27100FACACA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		0183B9872B44A27100FACACA = {
 			isa = PBXGroup;
 			children = (
+				017E12F92B4C75EE0057B77E /* .gitignore */,
 				0183B9922B44A27100FACACA /* Carpark Redux */,
 				0183B9912B44A27100FACACA /* Products */,
 			);
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0183B99D2B44A27300FACACA /* Preview Assets.xcassets in Resources */,
+				017E12FA2B4C75EE0057B77E /* .gitignore in Resources */,
 				0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,7 +356,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Carpark Redux/Carpark_Redux.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Carpark Redux/Preview Content\"";
 				DEVELOPMENT_TEAM = CCAQHTG68D;
 				ENABLE_PREVIEWS = YES;
@@ -392,7 +396,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Carpark Redux/Carpark_Redux.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Carpark Redux/Preview Content\"";
 				DEVELOPMENT_TEAM = CCAQHTG68D;
 				ENABLE_PREVIEWS = YES;
