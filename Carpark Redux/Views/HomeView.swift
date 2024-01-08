@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  Carpark Redux
 //
-//  Created by Mack Slevin on 1/2/24.
+//  Created by Mack Slevin on 1/2/24
 //
 
 import SwiftUI
