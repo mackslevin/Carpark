@@ -67,6 +67,7 @@
 		017B60152B44E0C1005A3F96 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				0138AB782BBCBFD10036E7E2 /* ParkHere.swift */,
 				0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */,
 				017B60162B44E0E4005A3F96 /* Utility.swift */,
 				017B60182B44EA7B005A3F96 /* LocationModel.swift */,
@@ -123,7 +124,6 @@
 				01F516432B45F2AD0021B487 /* AddButtonStyle.swift */,
 				012CF1372B47370B008D5E81 /* MapPreference.swift */,
 				012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */,
-				0138AB782BBCBFD10036E7E2 /* ParkHere.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Carpark Redux/Carpark_Redux.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Carpark Redux/Preview Content\"";
 				DEVELOPMENT_TEAM = CCAQHTG68D;
 				ENABLE_PREVIEWS = YES;
@@ -379,13 +379,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnslevin.Carpark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -400,7 +401,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Carpark Redux/Carpark_Redux.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Carpark Redux/Preview Content\"";
 				DEVELOPMENT_TEAM = CCAQHTG68D;
 				ENABLE_PREVIEWS = YES;
@@ -419,13 +420,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnslevin.Carpark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

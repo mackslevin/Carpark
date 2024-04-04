@@ -9,17 +9,9 @@ import Foundation
 import AppIntents
 import SwiftData
 
-
-
-
-
 struct ParkHere: AppIntent {
-    
-    
     static var title: LocalizedStringResource = "Park Here"
-    
-    
-    
+
     enum ParkHereError: Swift.Error, CustomLocalizedStringResourceConvertible {
         case noLocation
         
@@ -30,7 +22,6 @@ struct ParkHere: AppIntent {
             }
         }
     }
-    
     
     @MainActor
     func perform() async throws -> some IntentResult {
@@ -64,5 +55,4 @@ struct ParkHere: AppIntent {
         
         return .result()
     }
-    
 }

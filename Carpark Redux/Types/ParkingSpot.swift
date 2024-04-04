@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import CoreLocation
+import AppIntents
 
 @Model
 class ParkingSpot: Identifiable {
