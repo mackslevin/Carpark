@@ -21,6 +21,7 @@
 		0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0183B9992B44A27300FACACA /* Assets.xcassets */; };
 		0183B99D2B44A27300FACACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0183B99C2B44A27300FACACA /* Preview Assets.xcassets */; };
 		0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9A52B44A2ED00FACACA /* HomeView.swift */; };
+		01A9AC672BBF5F9000C46F9C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */; };
 		01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */; };
 		01F516422B45D8C60021B487 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516412B45D8C60021B487 /* LocationError.swift */; };
 		01F516442B45F2AD0021B487 /* AddButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516432B45F2AD0021B487 /* AddButtonStyle.swift */; };
@@ -46,6 +47,7 @@
 		0183B99E2B44A27300FACACA /* Carpark_Redux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Carpark_Redux.entitlements; sourceTree = "<group>"; };
 		0183B99F2B44A27300FACACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0183B9A52B44A2ED00FACACA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDataItem.swift; sourceTree = "<group>"; };
 		01F516412B45D8C60021B487 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
 		01F516432B45F2AD0021B487 /* AddButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonStyle.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		0183B9872B44A27100FACACA = {
 			isa = PBXGroup;
 			children = (
+				01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */,
 				017E12F92B4C75EE0057B77E /* .gitignore */,
 				0183B9922B44A27100FACACA /* Carpark Redux */,
 				0183B9912B44A27100FACACA /* Products */,
@@ -200,6 +203,7 @@
 			files = (
 				0183B99D2B44A27300FACACA /* Preview Assets.xcassets in Resources */,
 				017E12FA2B4C75EE0057B77E /* .gitignore in Resources */,
+				01A9AC672BBF5F9000C46F9C /* PrivacyInfo.xcprivacy in Resources */,
 				0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
