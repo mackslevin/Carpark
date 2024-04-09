@@ -72,7 +72,6 @@
 		017B60152B44E0C1005A3F96 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */,
 				0138AB782BBCBFD10036E7E2 /* ParkHere.swift */,
 				0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */,
 				017B60162B44E0E4005A3F96 /* Utility.swift */,
@@ -84,6 +83,7 @@
 		0183B9872B44A27100FACACA = {
 			isa = PBXGroup;
 			children = (
+				0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */,
 				0157E5CC2BC5C5D800A55A39 /* README.md */,
 				01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */,
 				017E12F92B4C75EE0057B77E /* .gitignore */,
