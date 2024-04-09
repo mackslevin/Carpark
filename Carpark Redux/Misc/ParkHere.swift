@@ -1,10 +1,3 @@
-//
-//  ParkHere.swift
-//  Carpark Redux
-//
-//  Created by Mack Slevin on 4/2/24.
-//
-
 import Foundation
 import AppIntents
 import SwiftData
@@ -33,7 +26,7 @@ struct ParkHere: AppIntent {
             print("^^ location \(location)")
             
             // Create model container to interact with SwiftData database
-            var sharedModelContainer: ModelContainer = {
+            let sharedModelContainer: ModelContainer = {
                 let schema = Schema([
                     ParkingSpot.self,
                 ])
@@ -46,6 +39,7 @@ struct ParkHere: AppIntent {
                 }
             }()
             
+            // Save new spot for current location
             let newSpot = ParkingSpot(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             sharedModelContainer.mainContext.insert(newSpot)
         } else {

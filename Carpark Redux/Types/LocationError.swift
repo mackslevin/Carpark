@@ -1,10 +1,3 @@
-//
-//  LocationError.swift
-//  Carpark Redux
-//
-//  Created by Mack Slevin on 1/3/24.
-//
-
 import Foundation
 
 enum LocationError: LocalizedError {

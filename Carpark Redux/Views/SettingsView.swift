@@ -1,13 +1,4 @@
-//
-//  SettingsView.swift
-//  Carpark Redux
-//
-//  Created by Mack Slevin on 1/4/24.
-//
-
 import SwiftUI
-
-
 
 struct SettingsView: View {
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
