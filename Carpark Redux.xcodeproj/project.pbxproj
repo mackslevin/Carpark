@@ -11,6 +11,7 @@
 		012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1372B47370B008D5E81 /* MapPreference.swift */; };
 		012CF13A2B474FB8008D5E81 /* CustomAccentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */; };
 		0138AB792BBCBFD10036E7E2 /* ParkHere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138AB782BBCBFD10036E7E2 /* ParkHere.swift */; };
+		0157E5CE2BC5C73800A55A39 /* appstore-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */; };
 		017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60132B44DF6E005A3F96 /* ParkingSpot.swift */; };
 		017B60172B44E0E4005A3F96 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60162B44E0E4005A3F96 /* Utility.swift */; };
 		017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60182B44EA7B005A3F96 /* LocationModel.swift */; };
@@ -34,6 +35,8 @@
 		012CF1372B47370B008D5E81 /* MapPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPreference.swift; sourceTree = "<group>"; };
 		012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccentColor.swift; sourceTree = "<group>"; };
 		0138AB782BBCBFD10036E7E2 /* ParkHere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkHere.swift; sourceTree = "<group>"; };
+		0157E5CC2BC5C5D800A55A39 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appstore-1.jpg"; sourceTree = "<group>"; };
 		017B60132B44DF6E005A3F96 /* ParkingSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
 		017B60162B44E0E4005A3F96 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		017B60182B44EA7B005A3F96 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		017B60152B44E0C1005A3F96 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */,
 				0138AB782BBCBFD10036E7E2 /* ParkHere.swift */,
 				0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */,
 				017B60162B44E0E4005A3F96 /* Utility.swift */,
@@ -80,6 +84,7 @@
 		0183B9872B44A27100FACACA = {
 			isa = PBXGroup;
 			children = (
+				0157E5CC2BC5C5D800A55A39 /* README.md */,
 				01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */,
 				017E12F92B4C75EE0057B77E /* .gitignore */,
 				0183B9922B44A27100FACACA /* Carpark Redux */,
@@ -204,6 +209,7 @@
 				0183B99D2B44A27300FACACA /* Preview Assets.xcassets in Resources */,
 				017E12FA2B4C75EE0057B77E /* .gitignore in Resources */,
 				01A9AC672BBF5F9000C46F9C /* PrivacyInfo.xcprivacy in Resources */,
+				0157E5CE2BC5C73800A55A39 /* appstore-1.jpg in Resources */,
 				0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
