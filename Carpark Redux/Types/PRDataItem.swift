@@ -3,7 +3,7 @@ import CoreLocation
 
 // This is an outdated legacy class from the old UIKit version of the app. This is used to read data previously stored in UserDefaults so it can be moved over to the newer SwiftData system.
 class PRDataItem: NSObject, NSCoding, NSSecureCoding {
-    static var supportsSecureCoding: Bool = true
+    static let supportsSecureCoding: Bool = true
     
     let date: Date!
     let location: CLLocation!

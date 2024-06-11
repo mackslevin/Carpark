@@ -3,7 +3,7 @@ import AppIntents
 import SwiftData
 
 struct ParkHere: AppIntent {
-    static var title: LocalizedStringResource = "Park Here"
+    static let title: LocalizedStringResource = "Park Here"
 
     enum ParkHereError: Swift.Error, CustomLocalizedStringResourceConvertible {
         case noLocation
@@ -23,8 +23,6 @@ struct ParkHere: AppIntent {
         locationModel.requestAuthorization()
         
         if let location = locationModel.locationManager.location {
-            print("^^ location \(location)")
-            
             // Create model container to interact with SwiftData database
             let sharedModelContainer: ModelContainer = {
                 let schema = Schema([
@@ -43,7 +41,6 @@ struct ParkHere: AppIntent {
             let newSpot = ParkingSpot(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             sharedModelContainer.mainContext.insert(newSpot)
         } else {
-            print("^^ no location")
             throw ParkHereError.noLocation
         }
         
