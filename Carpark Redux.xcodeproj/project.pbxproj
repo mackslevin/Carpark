@@ -18,10 +18,10 @@
 		017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B601A2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift */; };
 		017E12FA2B4C75EE0057B77E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 017E12F92B4C75EE0057B77E /* .gitignore */; };
 		0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */; };
-		0183B9982B44A27100FACACA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9972B44A27100FACACA /* Item.swift */; };
 		0183B99A2B44A27300FACACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0183B9992B44A27300FACACA /* Assets.xcassets */; };
 		0183B99D2B44A27300FACACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0183B99C2B44A27300FACACA /* Preview Assets.xcassets */; };
 		0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0183B9A52B44A2ED00FACACA /* HomeView.swift */; };
+		01A04CCB2C1B9AF200D2563F /* ArchiveRowLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A04CCA2C1B9AF200D2563F /* ArchiveRowLabel.swift */; };
 		01A9AC672BBF5F9000C46F9C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */; };
 		01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */; };
 		01F516422B45D8C60021B487 /* LocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F516412B45D8C60021B487 /* LocationError.swift */; };
@@ -44,12 +44,12 @@
 		017E12F92B4C75EE0057B77E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0183B9902B44A27100FACACA /* Carpark Redux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carpark Redux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carpark_ReduxApp.swift; sourceTree = "<group>"; };
-		0183B9972B44A27100FACACA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0183B9992B44A27300FACACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0183B99C2B44A27300FACACA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0183B99E2B44A27300FACACA /* Carpark_Redux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Carpark_Redux.entitlements; sourceTree = "<group>"; };
 		0183B99F2B44A27300FACACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0183B9A52B44A2ED00FACACA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		01A04CCA2C1B9AF200D2563F /* ArchiveRowLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveRowLabel.swift; sourceTree = "<group>"; };
 		01A9AC662BBF5F9000C46F9C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDataItem.swift; sourceTree = "<group>"; };
 		01F516412B45D8C60021B487 /* LocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationError.swift; sourceTree = "<group>"; };
@@ -125,7 +125,6 @@
 		01C9CF1E2B44BAEF00CB90EB /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				0183B9972B44A27100FACACA /* Item.swift */,
 				01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */,
 				017B60132B44DF6E005A3F96 /* ParkingSpot.swift */,
 				01F516412B45D8C60021B487 /* LocationError.swift */,
@@ -144,6 +143,7 @@
 				01F516452B461BE20021B487 /* ArchiveView.swift */,
 				01F516472B4647360021B487 /* ParkingSpotDetailView.swift */,
 				012CF1352B472ADD008D5E81 /* SettingsView.swift */,
+				01A04CCA2C1B9AF200D2563F /* ArchiveRowLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,9 +227,9 @@
 				0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */,
 				012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */,
 				017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */,
+				01A04CCB2C1B9AF200D2563F /* ArchiveRowLabel.swift in Sources */,
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,
 				012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */,
-				0183B9982B44A27100FACACA /* Item.swift in Sources */,
 				012CF13A2B474FB8008D5E81 /* CustomAccentColor.swift in Sources */,
 				01F516422B45D8C60021B487 /* LocationError.swift in Sources */,
 				0138AB792BBCBFD10036E7E2 /* ParkHere.swift in Sources */,

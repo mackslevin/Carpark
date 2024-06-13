@@ -13,9 +13,7 @@ struct ArchiveView: View {
                     NavigationLink {
                         ParkingSpotDetailView(spot: spot)
                     } label: {
-                        VStack(alignment: .leading, content: {
-                            Text(spot.date.formatted())
-                        })
+                        ArchiveRowLabel(spot: spot)
                     }
                 }
                 .onDelete(perform: { indexSet in

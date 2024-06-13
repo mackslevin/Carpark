@@ -137,7 +137,6 @@ struct ParkingSpotDetailView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .multilineTextAlignment(.center)
                 .padding()
-                .fontDesign(.rounded)
                 .task {
                     self.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
                 }

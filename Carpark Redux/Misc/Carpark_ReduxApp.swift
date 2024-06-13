@@ -22,6 +22,7 @@ struct Carpark_ReduxApp: App {
         WindowGroup {
             HomeView()
                 .tint(Utility.color(forCustomAccentColor: customAccentColor))
+                .fontDesign(.rounded)
         }
         .modelContainer(sharedModelContainer)
     }
