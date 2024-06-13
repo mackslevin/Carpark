@@ -231,7 +231,6 @@ struct HomeView: View {
     
     func zoomOut() {
         guard let userCoords = locationModel.locationManager.location?.coordinate, let spotCoords = selectedSpot?.coordinate else { return }
-        
         let minLat = min(userCoords.latitude, spotCoords.latitude)
         let minLong = min(userCoords.longitude, spotCoords.longitude)
         let maxLat = max(userCoords.latitude, spotCoords.latitude)
@@ -241,7 +240,6 @@ struct HomeView: View {
             latitude: (minLat + maxLat) / 2,
             longitude: (minLong + maxLong) / 2
         )
-        
         let span = MKCoordinateSpan(
             latitudeDelta: (maxLat - minLat) * 1.5,
             longitudeDelta: (maxLong - minLong) * 1.5

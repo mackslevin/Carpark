@@ -17,6 +17,16 @@ class LocationModel: NSObject, ObservableObject {
             self.locationManager.requestWhenInUseAuthorization()
         }
     }
+    
+    @MainActor
+    func placemark(forLocation location: CLLocation) async throws -> CLPlacemark? {
+        let geocoder = CLGeocoder()
+        if let placemark = try await geocoder.reverseGeocodeLocation(location).first {
+            return placemark
+        }
+        
+        return nil
+    }
 }
 
 extension LocationModel: CLLocationManagerDelegate {

@@ -17,6 +17,8 @@ struct ParkingSpotDetailView: View {
     
     @FocusState var notesFieldIsFocused: Bool
     
+    @ObservedObject var locationModel = LocationModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -137,7 +139,7 @@ struct ParkingSpotDetailView: View {
                 .padding()
                 .fontDesign(.rounded)
                 .task {
-                    await setPlacemark()
+                    self.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
                 }
                 .alert("Are you sure you want to delete this spot?", isPresented: $isShowingDeleteWarning) {
                     Button(role: .destructive) {
@@ -160,13 +162,10 @@ struct ParkingSpotDetailView: View {
         
     }
     
-    func setPlacemark() async {
-        let location = CLLocation(latitude: spot.latitude, longitude: spot.longitude)
-        let geocoder = CLGeocoder()
-        if let placemark = try? await geocoder.reverseGeocodeLocation(location).first {
-            self.placemark = placemark
-        }
-    }
+
+//    func setPlacemark() async {
+//        self.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
+//    }
     
     func delete() {
         modelContext.delete(spot)
