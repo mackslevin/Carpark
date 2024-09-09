@@ -25,7 +25,7 @@ struct HomeView: View {
     @State private var isShowingParkConfirmation = false
     
     var body: some View {
-        NavigationStack {
+        
             ZStack {
                 Map(position: $position) {
                     UserAnnotation()
@@ -148,6 +148,11 @@ struct HomeView: View {
             .sheet(isPresented: $isShowingSettings, content: {
                 SettingsView()
             })
+            .sheet(isPresented: $isShowingSpotDetail, content: {
+                if let selectedSpot {
+                    ParkingSpotDetailView(spot: selectedSpot)
+                }
+            })
             .onChange(of: spots) { _, _ in
                 selectedSpot = mostRecentSpot()
             }
@@ -172,12 +177,8 @@ struct HomeView: View {
                         setup()
                 }
             }
-            .navigationDestination(isPresented: $isShowingSpotDetail) {
-                if let selectedSpot {
-                    ParkingSpotDetailView(spot: selectedSpot)
-                }
-            }
-        }
+            
+        
     }
     
     

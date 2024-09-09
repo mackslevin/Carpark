@@ -156,6 +156,13 @@ struct ParkingSpotDetailView: View {
                     .ignoresSafeArea()
                     .opacity(0.05)
             }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close", systemImage: "xmark.circle") {
+                        dismiss()
+                    }
+                }
+            }
             
         }
         
