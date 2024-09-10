@@ -8,6 +8,7 @@
 import SwiftUI
 import Observation
 
+@Observable
 class SettingsViewModel {
     let settingsCounterKey = "settingsWasOpenedCounter"
     

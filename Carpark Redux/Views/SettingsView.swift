@@ -65,11 +65,13 @@ struct SettingsView: View {
                     .opacity(0.05)
             }
             .toolbar {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .bold()
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .bold()
+                    }
                 }
             }
             .onAppear {

@@ -11,25 +11,23 @@ struct ParkingSpotDetailView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) var modelContext
     
-    @State private var placemark: CLPlacemark? = nil
-    @State private var showNotesEvenThoughEmpty = false
-    @State private var isShowingDeleteWarning = false
-    
     @FocusState var notesFieldIsFocused: Bool
     
     @ObservedObject var locationModel = LocationModel()
+    
+    @State private var vm = ParkingSpotDetailViewModel()
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
                     VStack(alignment: .leading) {
-                        Text(placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(placemark!.name!)")
+                        Text(vm.placemark?.name == nil ? "Parking Spot, \(spot.date.formatted())" : "Near \(vm.placemark!.name!)")
                             .font(.title)
                             .bold()
                             .foregroundStyle(.tint)
                         
-                        Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
+                        Text(vm.placemark?.subLocality != nil ? vm.placemark!.subLocality! : vm.placemark?.locality != nil ? vm.placemark!.locality! : "")
                             .foregroundStyle(.secondary)
                             .fontWeight(.medium)
                         Map {
@@ -52,10 +50,10 @@ struct ParkingSpotDetailView: View {
                     .multilineTextAlignment(.leading)
                     
                     VStack(spacing: 12) {
-                        if spot.notes.isEmpty && !showNotesEvenThoughEmpty {
+                        if spot.notes.isEmpty && !vm.showNotesEvenThoughEmpty {
                             Button {
                                 withAnimation {
-                                    showNotesEvenThoughEmpty = true
+                                    vm.showNotesEvenThoughEmpty = true
                                 }
                                 notesFieldIsFocused = true
                             } label: {
@@ -116,7 +114,7 @@ struct ParkingSpotDetailView: View {
                         }
                         
                         Button(role: .destructive) {
-                            isShowingDeleteWarning = true
+                            vm.isShowingDeleteWarning = true
                         } label: {
                             HStack {
                                 Spacer()
@@ -138,11 +136,12 @@ struct ParkingSpotDetailView: View {
                 .multilineTextAlignment(.center)
                 .padding()
                 .task {
-                    self.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
+                    vm.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
                 }
-                .alert("Are you sure you want to delete this spot?", isPresented: $isShowingDeleteWarning) {
+                .alert("Are you sure you want to delete this spot?", isPresented: $vm.isShowingDeleteWarning) {
                     Button(role: .destructive) {
-                        delete()
+                        modelContext.delete(spot)
+                        dismiss()
                     } label: {
                         Text("Delete")
                     }
@@ -158,24 +157,15 @@ struct ParkingSpotDetailView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Close", systemImage: "xmark.circle") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .bold()
                     }
                 }
             }
-            
         }
-        
-    }
-    
-
-//    func setPlacemark() async {
-//        self.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
-//    }
-    
-    func delete() {
-        modelContext.delete(spot)
-        dismiss()
     }
 }
 
