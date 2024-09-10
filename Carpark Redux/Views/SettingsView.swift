@@ -1,12 +1,17 @@
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
     @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
     @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
+    @AppStorage("settingsWasOpenedCounter") var openedCounter = 0 // Incremented on view appear. Eventually reset to zero. Used in determining when to prompt for app store review/rating.
     
+    @Environment(\.requestReview) private var requestReview
     @Environment(\.dismiss) var dismiss
+    
+    @State private var vm = SettingsViewModel()
     
     var body: some View {
         NavigationStack {
@@ -49,7 +54,6 @@ struct SettingsView: View {
                         ArchiveView()
                     }
                 }
-                
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
@@ -66,6 +70,11 @@ struct SettingsView: View {
                 } label: {
                     Image(systemName: "xmark")
                         .bold()
+                }
+            }
+            .onAppear {
+                if vm.shouldAskForReview() {
+                    requestReview()
                 }
             }
         }
