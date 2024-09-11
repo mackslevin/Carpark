@@ -1,5 +1,6 @@
 import SwiftUI
 import StoreKit
+import SwiftData
 
 struct SettingsView: View {
     @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
@@ -12,6 +13,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var vm = SettingsViewModel()
+    
+    @Query var spots: [ParkingSpot]
     
     var body: some View {
         NavigationStack {
@@ -49,6 +52,7 @@ struct SettingsView: View {
                     NavigationLink("Past Parking Spots") {
                         ArchiveView()
                     }
+                    .disabled(spots.count < 2)
                 }
             }
             .fontWeight(.medium)
