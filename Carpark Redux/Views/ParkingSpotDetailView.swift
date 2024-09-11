@@ -4,18 +4,17 @@ import SwiftData
 
 struct ParkingSpotDetailView: View {
     @Bindable var spot: ParkingSpot
+    
+    @FocusState var notesFieldIsFocused: Bool
+    @ObservedObject var locationModel = LocationModel()
+    @State private var vm = ParkingSpotDetailViewModel()
+    
     @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
     @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) var modelContext
-    
-    @FocusState var notesFieldIsFocused: Bool
-    
-    @ObservedObject var locationModel = LocationModel()
-    
-    @State private var vm = ParkingSpotDetailViewModel()
     
     var body: some View {
         NavigationStack {
@@ -156,12 +155,11 @@ struct ParkingSpotDetailView: View {
                     .opacity(0.05)
             }
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+                ToolbarItem(placement: .confirmationAction) {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark")
-                            .bold()
+                        Text("Done").bold()
                     }
                 }
             }

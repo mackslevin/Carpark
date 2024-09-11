@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct ArchiveRowLabel: View {
     @ObservedObject private var locationModel = LocationModel()
@@ -14,19 +15,25 @@ struct ArchiveRowLabel: View {
     @State private var placemark: CLPlacemark?
     
     
-    var formattedDate: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMMM d'th' yyyy 'at' h:mm a"
-        return dateFormatter.string(from: spot.date)
-    }
-    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(formattedDate)
-                .fontWeight(.semibold)
+        
+        HStack {
+            Map(bounds: .init(minimumDistance: 650, maximumDistance: 650)) {
+                Marker("", systemImage: "car.fill", coordinate: spot.coordinate)
+            }
+            .aspectRatio(1, contentMode: .fit)
+            .frame(maxWidth: 100)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            
+            
+            VStack(alignment: .leading) {
+                Text(spot.displayDate)
+                    .fontWeight(.semibold)
 
-            Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
+                Text(placemark?.subLocality != nil ? placemark!.subLocality! : placemark?.locality != nil ? placemark!.locality! : "")
+            }
         }
+        
         .task {
             self.placemark = try? await locationModel.placemark(forLocation: CLLocation(latitude: spot.latitude, longitude: spot.longitude))
         }

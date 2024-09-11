@@ -23,11 +23,7 @@ struct SettingsView: View {
                             Text(mapPref.rawValue.capitalized).tag(mapPref)
                         }
                     }
-                    .tint(.primary)
-                    
-                    
                     Toggle("Haptic Feedback", isOn: $shouldUseHaptics)
-                    
                     Toggle("Confirm Before Setting Parking Space", isOn: $shouldConfirmBeforeParking)
                 }
                 
@@ -55,6 +51,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            .fontWeight(.medium)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .scrollContentBackground(.hidden)
