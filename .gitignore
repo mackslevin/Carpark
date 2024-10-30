@@ -1,5 +1,6 @@
 .DS_Store
 Products.storekit
+ProductIDs.plist
 
 ## User settings
 xcuserdata/
