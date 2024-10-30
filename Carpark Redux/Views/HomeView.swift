@@ -144,7 +144,9 @@ struct HomeView: View {
                 .buttonStyle(AddButtonStyle())
                 .padding()
             })
-            .onAppear { setup() }
+            .onAppear {
+                setup()
+            }
             .sheet(isPresented: $isShowingSettings, content: {
                 SettingsView()
             })
