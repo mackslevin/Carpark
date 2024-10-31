@@ -46,7 +46,10 @@
     }
   ],
   "settings" : {
-    "_failTransactionsEnabled" : false,
+    "_askToBuyEnabled" : false,
+    "_failTransactionsEnabled" : true,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
     "_storeKitErrors" : [
       {
         "current" : null,
@@ -54,8 +57,11 @@
         "name" : "Load Products"
       },
       {
-        "current" : null,
-        "enabled" : false,
+        "current" : {
+          "index" : 2,
+          "type" : "purchase"
+        },
+        "enabled" : true,
         "name" : "Purchase"
       },
       {

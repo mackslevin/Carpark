@@ -24,6 +24,7 @@ actor StoreKitClient {
     
     func isPurchased(_ productID: Product.ID) async throws -> Bool {
         guard let result = await Transaction.latest(for: productID) else {
+            print("^^ no past transactions")
             return false
         }
         let transaction = try checkVerified(result)
@@ -44,23 +45,53 @@ actor StoreKitClient {
         }
     }
     
-    func purchase(_ product: Product) async throws -> Transaction? {
-        let result = try await product.purchase()
-        
-        switch result {
-            case .success(let verificationResult):
-                let transaction = try checkVerified(verificationResult)
-                await transaction.finish()
-                
-                // TODO: Mark in SwiftData that a purchase has been made? Or just use isPurchased?
-                
-                return transaction
-            case .userCancelled, .pending:
-                return nil
-           default:
-                return nil
+//    func purchase(_ product: Product) async throws -> Transaction? {
+//        let result = try await product.purchase()
+//        
+//        switch result {
+//            case .success(let verificationResult):
+//                let transaction = try checkVerified(verificationResult)
+//                await transaction.finish()
+//                
+//                // TODO: Mark in SwiftData that a purchase has been made? Or just use isPurchased?
+//                
+//                return transaction
+//            case .userCancelled, .pending:
+//                return nil
+//            default:
+//                return nil
+//        }
+//    }
+    
+    func processPurchaseResult(_ result: Result<Product.PurchaseResult, any Error>) async throws(IAPError)  {
+        do {
+            switch result {
+                case .failure(let error):
+                    throw error
+                case .success(let purchaseResult):
+                    
+                    switch purchaseResult {
+                        case .success(let verificationResult):
+                            let transaction = try checkVerified(verificationResult)
+                            await transaction.finish()
+                            
+                            // TODO: Mark in SwiftData that a purchase has been made? Or just use isPurchased?
+                        case .pending:
+                            throw IAPError.purchasePending
+                        default:
+                            throw IAPError.unknownPurchaseState
+                    }
+            }
+        } catch {
+            if let customError = error as? IAPError {
+                throw customError
+            } else {
+                print("^^ boo")
+                throw .system(error)
+            }
         }
     }
+    
     
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
@@ -88,7 +119,6 @@ actor StoreKitClient {
               let productIDs = plist["ProductIDs"] as? [String] else {
             return []
         }
-        print("^^ \(productIDs)")
         
         return Set(productIDs)
     }

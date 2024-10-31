@@ -14,6 +14,7 @@
 		0157E5CE2BC5C73800A55A39 /* appstore-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */; };
 		016C38152C8FBD5000BD60F2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C38142C8FBD4500BD60F2 /* SettingsViewModel.swift */; };
 		016C38172C8FC7B400BD60F2 /* ParkingSpotDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C38162C8FC7AA00BD60F2 /* ParkingSpotDetailViewModel.swift */; };
+		017713232CD3ED99002F2B28 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017713222CD3ED99002F2B28 /* ShopView.swift */; };
 		017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60132B44DF6E005A3F96 /* ParkingSpot.swift */; };
 		017B60172B44E0E4005A3F96 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60162B44E0E4005A3F96 /* Utility.swift */; };
 		017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B60182B44EA7B005A3F96 /* LocationModel.swift */; };
@@ -41,6 +42,7 @@
 		0157E5CD2BC5C73800A55A39 /* appstore-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appstore-1.jpg"; sourceTree = "<group>"; };
 		016C38142C8FBD4500BD60F2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		016C38162C8FC7AA00BD60F2 /* ParkingSpotDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpotDetailViewModel.swift; sourceTree = "<group>"; };
+		017713222CD3ED99002F2B28 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		017B60132B44DF6E005A3F96 /* ParkingSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
 		017B60162B44E0E4005A3F96 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		017B60182B44EA7B005A3F96 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				01F516472B4647360021B487 /* ParkingSpotDetailView.swift */,
 				012CF1352B472ADD008D5E81 /* SettingsView.swift */,
 				01A04CCA2C1B9AF200D2563F /* ArchiveRowLabel.swift */,
+				017713222CD3ED99002F2B28 /* ShopView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */,
 				017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */,
 				01A04CCB2C1B9AF200D2563F /* ArchiveRowLabel.swift in Sources */,
+				017713232CD3ED99002F2B28 /* ShopView.swift in Sources */,
 				017B60142B44DF6E005A3F96 /* ParkingSpot.swift in Sources */,
 				016C38172C8FC7B400BD60F2 /* ParkingSpotDetailViewModel.swift in Sources */,
 				016C38152C8FBD5000BD60F2 /* SettingsViewModel.swift in Sources */,

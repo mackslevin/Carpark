@@ -33,7 +33,7 @@ struct SettingsView: View {
                     Toggle("Confirm Before Setting Parking Space", isOn: $shouldConfirmBeforeParking)
                 }
                 
-                Section("Appearance") {
+                Section("Accent Color") {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 5), content: {
                         ForEach(CustomAccentColor.allCases) { color in
                             ZStack {
@@ -57,6 +57,10 @@ struct SettingsView: View {
                     }
                     .disabled(spots.count < 2)
                 }
+                
+                Section("In-App Purchase") {
+                    NavigationLink("Tip Jar", destination: ShopView())
+                }
             }
             .fontWeight(.medium)
             .navigationTitle("Settings")
@@ -67,16 +71,6 @@ struct SettingsView: View {
                     .foregroundStyle(.tint)
                     .ignoresSafeArea()
                     .opacity(0.05)
-            }
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .bold()
-                    }
-                }
             }
             .onAppear {
                 if vm.shouldAskForReview() {
@@ -89,6 +83,7 @@ struct SettingsView: View {
                     print("^^ \(names)")
                 }
             }
+            .presentationDragIndicator(.visible)
         }
     }
 }
