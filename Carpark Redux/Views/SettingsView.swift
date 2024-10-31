@@ -16,6 +16,9 @@ struct SettingsView: View {
     
     @Query var spots: [ParkingSpot]
     
+    
+    let storeKitClient: StoreKitClient = .init()
+    
     var body: some View {
         NavigationStack {
             List {
@@ -79,11 +82,18 @@ struct SettingsView: View {
                 if vm.shouldAskForReview() {
                     requestReview()
                 }
+                
+                Task {
+                    await storeKitClient.requestProducts()
+                    let p = await storeKitClient.products
+                    let names = p.map({$0.displayName}).joined(separator: " - ")
+                    print("^^ \(names)")
+                }
             }
         }
     }
 }
 
-#Preview {
-    SettingsView()
-}
+//#Preview {
+//    SettingsView()
+//}
