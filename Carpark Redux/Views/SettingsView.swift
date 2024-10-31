@@ -84,7 +84,6 @@ struct SettingsView: View {
                 }
                 
                 Task {
-                    await storeKitClient.requestProducts()
                     let p = await storeKitClient.products
                     let names = p.map({$0.displayName}).joined(separator: " - ")
                     print("^^ \(names)")
