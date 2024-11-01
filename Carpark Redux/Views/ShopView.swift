@@ -13,10 +13,11 @@ struct ShopView: View {
     
     @State private var products: [Product] = []
     @State private var purchaseError: IAPError? = nil
+    @State private var lastPurchase: StoreKit.Transaction? = nil
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(spacing: 12) {
                 VStack {
                     HStack {
                         Image("mack")
@@ -30,8 +31,7 @@ struct ShopView: View {
                         Spacer()
                     }
                     
-                    
-                    Text("I'm an independant software developer in Los Angeles, California. I first made this app back in 2015 when I was living next to Dodger Stadium and often had to get creative with my parking on game nights. Since then I've continued to refine the app and add new features to make it even better. If you enjoy Carpark, please consider throwing a tip my way! It'll help fund future development, in addition to earning you my immense grattitude 😊")
+                    Text(skClient.salesPitch)
                         .italic()
                 }
                 .padding()
@@ -43,12 +43,40 @@ struct ShopView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .shadow(radius: 2, x: 0, y: 1)
                 
-                ForEach(products) { product in
-                    HStack {
-                        ProductView(product)
-                            .productViewStyle(.compact)
-                        Spacer()
+                
+                if let purchase = lastPurchase, let product = products.first(where: {$0.id == purchase.productID}) {
+                    VStack {
+                        Image(systemName: "fireworks")
+                            .resizable().scaledToFit()
+                            .padding()
+                            .foregroundStyle(.yellow, .white)
+                            .background {
+                                Circle()
+                                    .foregroundStyle(Color(red: 25/255, green: 25/255, blue: 112/255))
+                            }
+                            .frame(maxWidth: 100)
+                            
+                        
+                        Text("Thank you so much!")
+                            .fontWeight(.black)
+                            .font(.title2)
+                            .foregroundStyle(Color.accentColor)
+                        Text("You contributed a \(product.displayName.lowercased()) on \(Utility.simpleDate(from: purchase.purchaseDate)). I cherish you 🙏")
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.secondary)
                     }
+                    .frame(maxWidth: 320)
+                    .padding(.vertical)
+                }
+                
+                ForEach(products) { product in
+                    
+                    ProductView(product, prefersPromotionalIcon: false) {
+                        Image(product.imageName ?? "")
+                            .resizable().scaledToFill()
+                            .clipShape(Circle())
+                    }
+                    .productViewStyle(.compact)
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 20)
@@ -78,12 +106,14 @@ struct ShopView: View {
         .navigationTitle("Tip Jar")
         .task {
             products = await skClient.products.sorted(by: {$0.price < $1.price})
+            checkForPastPurchases()
         }
         .storeButton(.visible, for: .restorePurchases)
         .onInAppPurchaseCompletion { product, result in
             Task {
                 do {
                     try await skClient.processPurchaseResult(result)
+                    checkForPastPurchases()
                 } catch {
                     purchaseError = error as? IAPError
                 }
@@ -98,6 +128,27 @@ struct ShopView: View {
             }
         } message: {
             Text(purchaseError?.localizedDescription ?? "")
+        }
+    }
+    
+    func checkForPastPurchases() {
+        Task {
+            do {
+                var purchases: [StoreKit.Transaction] = []
+                for productID in skClient.productIDs {
+                    if let last = try await skClient.lastPurchase(productID) {
+                        purchases.append(last)
+                    }
+                }
+                
+                lastPurchase = purchases.sorted(by: {$0.purchaseDate < $1.purchaseDate}).last
+            } catch {
+                if let customError = error as? IAPError {
+                    purchaseError = customError
+                } else {
+                    purchaseError = .system(error)
+                }
+            }
         }
     }
 }

@@ -19,6 +19,13 @@ struct Utility {
         }
     }
     
+    static func simpleDate(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+    
     static func color(forCustomAccentColor custom: CustomAccentColor) -> Color {
         switch custom {
             case .indigo:

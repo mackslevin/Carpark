@@ -31,14 +31,27 @@ actor StoreKitClient {
         }
     }
     
-    func isPurchased(_ productID: Product.ID) async throws -> Bool {
+    func lastPurchase(_ productID: Product.ID) async throws -> Transaction? {
         guard let result = await Transaction.latest(for: productID) else {
-            print("^^ no past transactions")
-            return false
+            print("^^ No past transactions")
+            return nil
         }
+        
         let transaction = try checkVerified(result)
-        return transaction.revocationDate == nil
+        
+        return transaction
+        
     }
+    
+//    func isPurchased(_ productID: Product.ID) async throws -> Bool {
+//        guard let result = await Transaction.latest(for: productID) else {
+//            print("^^ no past transactions")
+//            return false
+//        }
+//        let transaction = try checkVerified(result)
+//        
+//        return transaction.revocationDate == nil
+//    }
     
     func listenForTransactions() -> Task<Void, Error> {
         return Task.detached {
@@ -53,24 +66,6 @@ actor StoreKitClient {
             }
         }
     }
-    
-//    func purchase(_ product: Product) async throws -> Transaction? {
-//        let result = try await product.purchase()
-//        
-//        switch result {
-//            case .success(let verificationResult):
-//                let transaction = try checkVerified(verificationResult)
-//                await transaction.finish()
-//                
-//                // TODO: Mark in SwiftData that a purchase has been made? Or just use isPurchased?
-//                
-//                return transaction
-//            case .userCancelled, .pending:
-//                return nil
-//            default:
-//                return nil
-//        }
-//    }
     
     func processPurchaseResult(_ result: Result<Product.PurchaseResult, any Error>) async throws(IAPError)  {
         do {
@@ -95,7 +90,6 @@ actor StoreKitClient {
             if let customError = error as? IAPError {
                 throw customError
             } else {
-                print("^^ boo")
                 throw .system(error)
             }
         }
