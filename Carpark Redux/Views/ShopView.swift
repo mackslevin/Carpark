@@ -9,15 +9,21 @@ import SwiftUI
 import StoreKit
 
 struct ShopView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    
     let skClient = StoreKitClient()
     
     @State private var products: [Product] = []
     @State private var purchaseError: IAPError? = nil
     @State private var lastPurchase: StoreKit.Transaction? = nil
     
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
+                
+                // MARK: Sales pitch
                 VStack {
                     HStack {
                         Image("mack")
@@ -32,7 +38,7 @@ struct ShopView: View {
                     }
                     
                     Text(skClient.salesPitch)
-                        .italic()
+                        
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -41,18 +47,18 @@ struct ShopView: View {
                     Rectangle().foregroundStyle(Color.accentColor.gradient)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                .shadow(radius: 2, x: 0, y: 1)
+
                 
-                
+                // MARK: "Thank you" view
                 if let purchase = lastPurchase, let product = products.first(where: {$0.id == purchase.productID}) {
                     VStack {
                         Image(systemName: "fireworks")
                             .resizable().scaledToFit()
                             .padding()
-                            .foregroundStyle(.yellow, .white)
+                            .foregroundStyle(customAccentColor.rawValue == "yellow" ? .orange : .yellow, .white)
                             .background {
                                 Circle()
-                                    .foregroundStyle(Color(red: 25/255, green: 25/255, blue: 112/255))
+                                    .foregroundStyle(.tint)
                             }
                             .frame(maxWidth: 100)
                             
@@ -61,7 +67,7 @@ struct ShopView: View {
                             .fontWeight(.black)
                             .font(.title2)
                             .foregroundStyle(Color.accentColor)
-                        Text("You contributed a \(product.displayName.lowercased()) on \(Utility.simpleDate(from: purchase.purchaseDate)). I cherish you 🙏")
+                        Text("You contributed \(product.displayName == "Unfathomable Tip" ? "an" : "a") \(product.displayName.lowercased()) on \(Utility.simpleDate(from: purchase.purchaseDate)). I cherish you 🙏")
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.secondary)
                     }
@@ -69,8 +75,9 @@ struct ShopView: View {
                     .padding(.vertical)
                 }
                 
+                
+                // MARK: Products
                 ForEach(products) { product in
-                    
                     ProductView(product, prefersPromotionalIcon: false) {
                         Image(product.imageName ?? "")
                             .resizable().scaledToFill()
@@ -80,8 +87,7 @@ struct ShopView: View {
                     .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 20)
-                            .foregroundStyle(.primary).colorInvert()
-                            .shadow(radius: 2, x: 0, y: 1)
+                            .foregroundStyle(Color(UIColor.secondarySystemGroupedBackground))
                     }
                 }
                 
@@ -102,6 +108,12 @@ struct ShopView: View {
             .padding()
             
             
+            
+        }
+        .background {
+            Rectangle()
+                .foregroundStyle(Color(UIColor.systemGroupedBackground)) // Match the background color of a List
+                .ignoresSafeArea()
         }
         .navigationTitle("Tip Jar")
         .task {
@@ -155,4 +167,5 @@ struct ShopView: View {
 
 #Preview {
     ShopView()
+        .fontDesign(.rounded)
 }

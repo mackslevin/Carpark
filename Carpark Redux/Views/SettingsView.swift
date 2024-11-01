@@ -65,13 +65,6 @@ struct SettingsView: View {
             .fontWeight(.medium)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
-            .scrollContentBackground(.hidden)
-            .background {
-                Rectangle()
-                    .foregroundStyle(.tint)
-                    .ignoresSafeArea()
-                    .opacity(0.05)
-            }
             .onAppear {
                 if vm.shouldAskForReview() {
                     requestReview()
