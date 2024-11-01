@@ -5,10 +5,10 @@ import AppIntents
 
 @Model
 class ParkingSpot: Identifiable {
-    let id = UUID()
-    let date = Date.now
-    let latitude: Double = 0
-    let longitude: Double = 0
+    private(set) var id = UUID()
+    private(set) var date = Date.now
+    private(set) var latitude: Double = 0
+    private(set) var longitude: Double = 0
     var notes: String = ""
     
     init(latitude: Double, longitude: Double) {

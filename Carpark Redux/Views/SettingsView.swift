@@ -52,14 +52,14 @@ struct SettingsView: View {
                 }
                 
                 Section("Data") {
-                    NavigationLink("Past Parking Spots") {
+                    NavigationLink("📆 Past Parking Spots") {
                         ArchiveView()
                     }
                     .disabled(spots.count < 2)
                 }
                 
                 Section("In-App Purchase") {
-                    NavigationLink("Tip Jar", destination: ShopView())
+                    NavigationLink("🤑 Tip Jar", destination: ShopView())
                 }
             }
             .fontWeight(.medium)

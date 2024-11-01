@@ -11,6 +11,15 @@ import StoreKit
 actor StoreKitClient {
     var products: [Product] = []
     var iapError: IAPError? = nil
+
+    let salesPitch: String = "I'm an independant software developer in Los Angeles, California. I first made this app back in 2015 when I was living next to Dodger Stadium and often had to get creative with my parking on game nights. Since then I've continued to refine the app and add new features to make it even better. If you enjoy Carpark, please consider throwing a tip my way! It'll help fund future development, in addition to earning you my immense grattitude 😊"
+    
+    let productIDs: Set<Product.ID> = [
+        "com.johnslevin.Carpark.iap.goodTip",
+        "com.johnslevin.Carpark.iap.greatTip",
+        "com.johnslevin.Carpark.iap.phenomenalTip",
+        "com.johnslevin.Carpark.iap.unfathomableTip"
+    ]
     
     init() {
         Task {
@@ -101,25 +110,13 @@ actor StoreKitClient {
                 return signedType
         }
     }
-    
+
     func requestProducts() async {
         do {
-            let storeProducts = try await Product.products(for: getProductIDs())
+            let storeProducts = try await Product.products(for: productIDs)
             products = storeProducts
         } catch {
             self.iapError = .system(error)
         }
-    }
-    
-    private func getProductIDs() -> Set<Product.ID> {
-        guard let url = Bundle.main.url(forResource: "ProductIDs", withExtension: "plist"),
-              let data = try? Data(contentsOf: url),
-              let plist = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)
-                as? [String: Any],
-              let productIDs = plist["ProductIDs"] as? [String] else {
-            return []
-        }
-        
-        return Set(productIDs)
     }
 }
