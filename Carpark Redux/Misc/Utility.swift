@@ -75,24 +75,4 @@ struct Utility {
                 Color.red
         }
     }
-    
-
-    func isAccentColorSystemYellow() -> Bool {
-        let accentUIColor = UIColor(Color.accentColor)
-        let systemYellow = UIColor.systemYellow
-
-        // Compare the RGB components of both colors
-        var accentRed: CGFloat = 0, accentGreen: CGFloat = 0, accentBlue: CGFloat = 0, accentAlpha: CGFloat = 0
-        accentUIColor.getRed(&accentRed, green: &accentGreen, blue: &accentBlue, alpha: &accentAlpha)
-
-        var yellowRed: CGFloat = 0, yellowGreen: CGFloat = 0, yellowBlue: CGFloat = 0, yellowAlpha: CGFloat = 0
-        systemYellow.getRed(&yellowRed, green: &yellowGreen, blue: &yellowBlue, alpha: &yellowAlpha)
-
-        // Check if RGB components are the same (or very close, due to minor float differences)
-        let tolerance: CGFloat = 0.01
-        return abs(accentRed - yellowRed) < tolerance &&
-               abs(accentGreen - yellowGreen) < tolerance &&
-               abs(accentBlue - yellowBlue) < tolerance
-    }
-
 }

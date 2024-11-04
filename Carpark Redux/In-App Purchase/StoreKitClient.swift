@@ -33,25 +33,10 @@ actor StoreKitClient {
     
     func lastPurchase(_ productID: Product.ID) async throws -> Transaction? {
         guard let result = await Transaction.latest(for: productID) else {
-            print("^^ No past transactions")
             return nil
         }
-        
-        let transaction = try checkVerified(result)
-        
-        return transaction
-        
+        return try checkVerified(result)
     }
-    
-//    func isPurchased(_ productID: Product.ID) async throws -> Bool {
-//        guard let result = await Transaction.latest(for: productID) else {
-//            print("^^ no past transactions")
-//            return false
-//        }
-//        let transaction = try checkVerified(result)
-//        
-//        return transaction.revocationDate == nil
-//    }
     
     func listenForTransactions() -> Task<Void, Error> {
         return Task.detached {
@@ -94,7 +79,6 @@ actor StoreKitClient {
             }
         }
     }
-    
     
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {

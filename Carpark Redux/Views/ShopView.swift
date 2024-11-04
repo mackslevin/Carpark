@@ -18,36 +18,32 @@ struct ShopView: View {
     @State private var purchaseError: IAPError? = nil
     @State private var lastPurchase: StoreKit.Transaction? = nil
     
-    
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                
                 // MARK: Sales pitch
-                VStack {
-                    HStack {
-                        Image("mack")
-                            .resizable().scaledToFill()
-                            .frame(maxWidth: 60, maxHeight: 60)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
-                        Text("Hi, I'm Mack!")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        Spacer()
-                    }
+                HStack {
+                    Spacer()
+                    Image("mack")
+                        .resizable().scaledToFill()
+                        .frame(maxWidth: 60, maxHeight: 60)
+                        .clipShape(Circle())
                     
-                    Text(skClient.salesPitch)
-                        
+                    Text("Hi, I'm Mack!")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.tint)
+                    Spacer()
                 }
-                .padding()
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .background {
-                    Rectangle().foregroundStyle(Color.accentColor.gradient)
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-
+                
+                Text(skClient.salesPitch)
+                    .padding()
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .background {
+                        Rectangle().foregroundStyle(Color.accentColor.gradient)
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
                 
                 // MARK: "Thank you" view
                 if let purchase = lastPurchase, let product = products.first(where: {$0.id == purchase.productID}) {
@@ -61,7 +57,6 @@ struct ShopView: View {
                                     .foregroundStyle(.tint)
                             }
                             .frame(maxWidth: 100)
-                            
                         
                         Text("Thank you so much!")
                             .fontWeight(.black)
@@ -75,20 +70,15 @@ struct ShopView: View {
                     .padding(.vertical)
                 }
                 
-                
                 // MARK: Products
                 ForEach(products) { product in
-                    ProductView(product, prefersPromotionalIcon: false) {
-                        Image(product.imageName ?? "")
-                            .resizable().scaledToFill()
-                            .clipShape(Circle())
-                    }
-                    .productViewStyle(.compact)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 20)
-                            .foregroundStyle(Color(UIColor.secondarySystemGroupedBackground))
-                    }
+                    ProductView(product, prefersPromotionalIcon: false)
+                        .productViewStyle(.compact)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 20)
+                                .foregroundStyle(Color(UIColor.secondarySystemGroupedBackground))
+                        }
                 }
                 
                 Spacer()
@@ -106,9 +96,6 @@ struct ShopView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding()
-            
-            
-            
         }
         .background {
             Rectangle()
