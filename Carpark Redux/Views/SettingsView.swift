@@ -3,11 +3,11 @@ import StoreKit
 import SwiftData
 
 struct SettingsView: View {
-    @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
-    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
-    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
-    @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
-    @AppStorage("settingsWasOpenedCounter") var openedCounter = 0 // Incremented on view appear. Eventually reset to zero. Used in determining when to prompt for app store review/rating.
+    @AppStorage(StorageKeys.shouldUseHaptics.rawValue) var shouldUseHaptics = true
+    @AppStorage(StorageKeys.mapPreference.rawValue) var mapPreference: MapPreference = .standard
+    @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage(StorageKeys.shouldConfirmBeforeParking.rawValue) var shouldConfirmBeforeParking = false
+    @AppStorage(StorageKeys.settingsWasOpenedCounter.rawValue) var openedCounter = 0 
     
     @Environment(\.requestReview) private var requestReview
     @Environment(\.dismiss) var dismiss

@@ -4,11 +4,11 @@ import SwiftData
 import MapKit
 
 struct HomeView: View {
-    @AppStorage(Utility.dataMigratedFromUIKit) var hasMigratedUserData = false
-    @AppStorage("shouldUseHaptics") var shouldUseHaptics = true
-    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
-    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
-    @AppStorage("shouldConfirmBeforeParking") var shouldConfirmBeforeParking = false
+    @AppStorage(StorageKeys.dataMigratedFromUIKit.rawValue) var hasMigratedUserData = false
+    @AppStorage(StorageKeys.shouldUseHaptics.rawValue) var shouldUseHaptics = true
+    @AppStorage(StorageKeys.mapPreference.rawValue) var mapPreference: MapPreference = .standard
+    @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage(StorageKeys.shouldConfirmBeforeParking.rawValue) var shouldConfirmBeforeParking = false
     
     @Environment(\.modelContext) var modelContext
     @Query var spots: [ParkingSpot]

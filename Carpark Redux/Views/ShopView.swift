@@ -10,7 +10,7 @@ import StoreKit
 
 struct ShopView: View {
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
     
     let skClient = StoreKitClient()
     
@@ -118,7 +118,7 @@ struct ShopView: View {
                 }
             }
         }
-        .alert("Purchase Failed", isPresented: .init(
+        .alert("The purchase was not completed", isPresented: .init(
             get: { purchaseError != nil },
             set: { if !$0 { purchaseError = nil } }
         )) {

@@ -9,8 +9,8 @@ struct ParkingSpotDetailView: View {
     @ObservedObject var locationModel = LocationModel()
     @State private var vm = ParkingSpotDetailViewModel()
     
-    @AppStorage("mapPreference") var mapPreference: MapPreference = .standard
-    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage(StorageKeys.mapPreference.rawValue) var mapPreference: MapPreference = .standard
+    @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme

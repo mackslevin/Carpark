@@ -2,10 +2,6 @@ import SwiftUI
 import MapKit
 
 struct Utility {
-    
-    // User defaults key for first run of the SwiftUI (post-UIKit) version of the app. It's a bool we set to true after any old user data has been migrated.
-    static let dataMigratedFromUIKit = "dataHasBeenMigratedFromUIKitVersion"
-    
     @MainActor static let exampleSpot = ParkingSpot(latitude: 34.10325647753972, longitude: -118.31919351426978)
     
     static func mapStyle(forMapPreference mapPreference: MapPreference) -> MapStyle {

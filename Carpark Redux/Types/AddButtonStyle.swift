@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AddButtonStyle: ButtonStyle {
-    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

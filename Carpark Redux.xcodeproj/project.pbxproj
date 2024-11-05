@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01233B172CD9A6A000F4D2FE /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01233B162CD9A69600F4D2FE /* StorageKeys.swift */; };
 		012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1352B472ADD008D5E81 /* SettingsView.swift */; };
 		012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1372B47370B008D5E81 /* MapPreference.swift */; };
 		012CF13A2B474FB8008D5E81 /* CustomAccentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01233B162CD9A69600F4D2FE /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		012CF1352B472ADD008D5E81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		012CF1372B47370B008D5E81 /* MapPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPreference.swift; sourceTree = "<group>"; };
 		012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccentColor.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		017B60152B44E0C1005A3F96 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				01233B162CD9A69600F4D2FE /* StorageKeys.swift */,
 				0138AB782BBCBFD10036E7E2 /* ParkHere.swift */,
 				0183B9932B44A27100FACACA /* Carpark_ReduxApp.swift */,
 				017B60162B44E0E4005A3F96 /* Utility.swift */,
@@ -268,6 +271,7 @@
 				01F516482B4647360021B487 /* ParkingSpotDetailView.swift in Sources */,
 				01F516462B461BE20021B487 /* ArchiveView.swift in Sources */,
 				017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */,
+				01233B172CD9A6A000F4D2FE /* StorageKeys.swift in Sources */,
 				0183B9942B44A27100FACACA /* Carpark_ReduxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

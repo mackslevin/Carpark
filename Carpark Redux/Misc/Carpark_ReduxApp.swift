@@ -16,7 +16,7 @@ struct Carpark_ReduxApp: App {
         }
     }()
     
-    @AppStorage("customAccentColor") var customAccentColor: CustomAccentColor = .indigo
+    @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
 
     var body: some Scene {
         WindowGroup {
