@@ -10,7 +10,11 @@ struct Carpark_ReduxApp: App {
             HomeView()
                 .tint(Utility.color(forCustomAccentColor: customAccentColor))
                 .fontDesign(.rounded)
+                .environment(\.storeKitClient, StoreKitClient())
         }
         .modelContainer(DataCenter.shared.container)
     }
 }
+
+
+

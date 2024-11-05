@@ -11,11 +11,9 @@ import SwiftData
 
 struct ShopView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.storeKitClient) var skClient
     @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
     @Query var pastPurchases: [InAppPurchase]
-    
-    let skClient = StoreKitClient()
-    
     @State private var products: [Product] = []
     @State private var purchaseError: IAPError? = nil
     @State private var lastPurchase: StoreKit.Transaction? = nil
@@ -48,30 +46,6 @@ struct ShopView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 
                 // MARK: "Thank you" view
-                if let purchase = lastPurchase, let product = products.first(where: {$0.id == purchase.productID}) {
-                    VStack {
-                        Image(systemName: "fireworks")
-                            .resizable().scaledToFit()
-                            .padding()
-                            .foregroundStyle(customAccentColor.rawValue == "yellow" ? .orange : .yellow, .white)
-                            .background {
-                                Circle()
-                                    .foregroundStyle(.tint)
-                            }
-                            .frame(maxWidth: 100)
-                        
-                        Text("Thank you so much!")
-                            .fontWeight(.black)
-                            .font(.title2)
-                            .foregroundStyle(Color.accentColor)
-                        Text("You contributed \(product.displayName == "Unfathomable Tip" ? "an" : "a") \(product.displayName.lowercased()) on \(Utility.simpleDate(from: purchase.purchaseDate)). I cherish you 🙏")
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(.secondary)
-                    }
-                    .frame(maxWidth: 320)
-                    .padding(.vertical)
-                }
-                
                 if let iap = pastPurchases.sorted(by: {$0.purchaseDate < $1.purchaseDate}).last {
                     VStack {
                         Image(systemName: "fireworks")
@@ -90,11 +64,11 @@ struct ShopView: View {
                             .foregroundStyle(Color.accentColor)
                         
                         if let name = iap.productName {
-                            Text("You contributed \(name == "Unfathomable Tip" ? "an" : "a") \(name.lowercased()) on \(Utility.simpleDate(from: iap.purchaseDate)). I cherish you 🙏")
+                            Text("You contributed \(name == "Unfathomable Tip" ? "an" : "a") \(name.lowercased()) on \(Utility.simpleDate(from: iap.purchaseDate))")
                                 .multilineTextAlignment(.center)
                                 .foregroundStyle(.secondary)
                         } else {
-                            Text("You contributed on \(Utility.simpleDate(from: iap.purchaseDate)). I cherish you 🙏")
+                            Text("You contributed on \(Utility.simpleDate(from: iap.purchaseDate))")
                                 .multilineTextAlignment(.center)
                                 .foregroundStyle(.secondary)
                         }

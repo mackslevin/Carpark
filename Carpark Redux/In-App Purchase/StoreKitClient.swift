@@ -5,8 +5,21 @@
 //  Created by Mack Slevin on 10/30/24.
 //
 
-import Foundation
+import SwiftUI
 import StoreKit
+import Observation
+
+
+private struct StoreKitClientKey: EnvironmentKey {
+    static let defaultValue: StoreKitClient = StoreKitClient()
+}
+
+extension EnvironmentValues {
+    var storeKitClient: StoreKitClient {
+        get { self[StoreKitClientKey.self] }
+        set { self[StoreKitClientKey.self] = newValue }
+    }
+}
 
 actor StoreKitClient {
     var products: [Product] = []
@@ -35,7 +48,7 @@ actor StoreKitClient {
         }
     }
     
-    func lastPurchase(_ productID: Product.ID) async throws -> Transaction? {
+    func lastPurchase(_ productID: Product.ID) async throws -> StoreKit.Transaction? {
         guard let result = await Transaction.latest(for: productID) else {
             return nil
         }
@@ -64,6 +77,8 @@ actor StoreKitClient {
                 do {
                     let transaction = try await self.checkVerified(result)
                     await transaction.finish()
+                    
+                    // TODO: Handle refunded
                     
                     await self.savePurchaseData(transaction)
                 } catch {
@@ -101,7 +116,7 @@ actor StoreKitClient {
     }
     
     @MainActor
-    private func savePurchaseData(_ transaction: Transaction) {
+    private func savePurchaseData(_ transaction: StoreKit.Transaction) {
         let iap = InAppPurchase(transaction: transaction)
         DataCenter.shared.container.mainContext.insert(iap)
         do {
