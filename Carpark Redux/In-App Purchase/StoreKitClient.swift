@@ -35,15 +35,30 @@ actor StoreKitClient {
         guard let result = await Transaction.latest(for: productID) else {
             return nil
         }
-        return try checkVerified(result)
+        
+        let transaction = try checkVerified(result)
+        if transaction.revocationDate != nil {
+            return nil
+        }
+        
+        return transaction
     }
+    
+//    func isPurchased(_ productID: Product.ID) async throws -> Bool {
+//        guard let result = await Transaction.latest(for: productID) else {
+//            print("^^ no past transactions")
+//            return false
+//        }
+//        let transaction = try checkVerified(result)
+//        
+//        return transaction.revocationDate == nil
+//    }
     
     func listenForTransactions() -> Task<Void, Error> {
         return Task.detached {
             for await result in Transaction.updates {
                 do {
                     let transaction = try await self.checkVerified(result)
-                    // TODO: Mark in SwiftData that a purchase has been made? Or just use isPurchased?
                     await transaction.finish()
                 } catch {
                     print("^^ Transaction listener: \(error)")
@@ -80,6 +95,7 @@ actor StoreKitClient {
         }
     }
     
+
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
             case .unverified(_, _):
