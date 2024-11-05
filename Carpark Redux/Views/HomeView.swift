@@ -167,7 +167,6 @@ struct HomeView: View {
                 .bold()
             })
             .onChange(of: locationModel.authorizationStatus) { _, newValue in
-                print("^^ status changed \(newValue)")
                 switch newValue {
                     case .denied:
                         locationError = .badAuthorization

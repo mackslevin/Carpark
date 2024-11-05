@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01233B172CD9A6A000F4D2FE /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01233B162CD9A69600F4D2FE /* StorageKeys.swift */; };
+		012964C22CDA989B00B75A48 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012964C12CDA989700B75A48 /* DataCenter.swift */; };
+		012964C42CDAA0B400B75A48 /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012964C32CDAA0AB00B75A48 /* InAppPurchase.swift */; };
 		012CF1362B472ADD008D5E81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1352B472ADD008D5E81 /* SettingsView.swift */; };
 		012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1372B47370B008D5E81 /* MapPreference.swift */; };
 		012CF13A2B474FB8008D5E81 /* CustomAccentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		01233B162CD9A69600F4D2FE /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		012964C12CDA989700B75A48 /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
+		012964C32CDAA0AB00B75A48 /* InAppPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchase.swift; sourceTree = "<group>"; };
 		012CF1352B472ADD008D5E81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		012CF1372B47370B008D5E81 /* MapPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPreference.swift; sourceTree = "<group>"; };
 		012CF1392B474FB8008D5E81 /* CustomAccentColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccentColor.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 		01C9CF1E2B44BAEF00CB90EB /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				012964C32CDAA0AB00B75A48 /* InAppPurchase.swift */,
+				012964C12CDA989700B75A48 /* DataCenter.swift */,
 				016C38162C8FC7AA00BD60F2 /* ParkingSpotDetailViewModel.swift */,
 				016C38142C8FBD4500BD60F2 /* SettingsViewModel.swift */,
 				01C9CF1C2B44BA7B00CB90EB /* PRDataItem.swift */,
@@ -257,6 +263,7 @@
 				017B60172B44E0E4005A3F96 /* Utility.swift in Sources */,
 				01C9CF1D2B44BA7B00CB90EB /* PRDataItem.swift in Sources */,
 				0183B9A62B44A2ED00FACACA /* HomeView.swift in Sources */,
+				012964C22CDA989B00B75A48 /* DataCenter.swift in Sources */,
 				012CF1382B47370B008D5E81 /* MapPreference.swift in Sources */,
 				017B601B2B44F19A005A3F96 /* ParkingSpotAnnotationLabel.swift in Sources */,
 				01A04CCB2C1B9AF200D2563F /* ArchiveRowLabel.swift in Sources */,
@@ -268,6 +275,7 @@
 				012CF13A2B474FB8008D5E81 /* CustomAccentColor.swift in Sources */,
 				01F516422B45D8C60021B487 /* LocationError.swift in Sources */,
 				0138AB792BBCBFD10036E7E2 /* ParkHere.swift in Sources */,
+				012964C42CDAA0B400B75A48 /* InAppPurchase.swift in Sources */,
 				01F516482B4647360021B487 /* ParkingSpotDetailView.swift in Sources */,
 				01F516462B461BE20021B487 /* ArchiveView.swift in Sources */,
 				017B60192B44EA7B005A3F96 /* LocationModel.swift in Sources */,

@@ -3,19 +3,6 @@ import SwiftData
 
 @main
 struct Carpark_ReduxApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            ParkingSpot.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, cloudKitDatabase: .private("iCloud.com.johnslevin.Carpark"))
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-    
     @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
 
     var body: some Scene {
@@ -24,6 +11,6 @@ struct Carpark_ReduxApp: App {
                 .tint(Utility.color(forCustomAccentColor: customAccentColor))
                 .fontDesign(.rounded)
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(DataCenter.shared.container)
     }
 }

@@ -7,10 +7,12 @@
 
 import SwiftUI
 import StoreKit
+import SwiftData
 
 struct ShopView: View {
     @Environment(\.colorScheme) var colorScheme
     @AppStorage(StorageKeys.customAccentColor.rawValue) var customAccentColor: CustomAccentColor = .indigo
+    @Query var pastPurchases: [InAppPurchase]
     
     let skClient = StoreKitClient()
     
@@ -70,6 +72,37 @@ struct ShopView: View {
                     .padding(.vertical)
                 }
                 
+                if let iap = pastPurchases.sorted(by: {$0.purchaseDate < $1.purchaseDate}).last {
+                    VStack {
+                        Image(systemName: "fireworks")
+                            .resizable().scaledToFit()
+                            .padding()
+                            .foregroundStyle(customAccentColor.rawValue == "yellow" ? .orange : .yellow, .white)
+                            .background {
+                                Circle()
+                                    .foregroundStyle(.tint)
+                            }
+                            .frame(maxWidth: 100)
+                        
+                        Text("Thank you so much!")
+                            .fontWeight(.black)
+                            .font(.title2)
+                            .foregroundStyle(Color.accentColor)
+                        
+                        if let name = iap.productName {
+                            Text("You contributed \(name == "Unfathomable Tip" ? "an" : "a") \(name.lowercased()) on \(Utility.simpleDate(from: iap.purchaseDate)). I cherish you 🙏")
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text("You contributed on \(Utility.simpleDate(from: iap.purchaseDate)). I cherish you 🙏")
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .frame(maxWidth: 320)
+                    .padding(.vertical)
+                }
+                
                 // MARK: Products
                 ForEach(products) { product in
                     ProductView(product, prefersPromotionalIcon: false)
@@ -105,14 +138,12 @@ struct ShopView: View {
         .navigationTitle("Tip Jar")
         .task {
             products = await skClient.products.sorted(by: {$0.price < $1.price})
-            checkForPastPurchases()
         }
         .storeButton(.visible, for: .restorePurchases)
         .onInAppPurchaseCompletion { product, result in
             Task {
                 do {
                     try await skClient.processPurchaseResult(result)
-                    checkForPastPurchases()
                 } catch {
                     purchaseError = error as? IAPError
                 }
@@ -130,26 +161,26 @@ struct ShopView: View {
         }
     }
     
-    func checkForPastPurchases() {
-        Task {
-            do {
-                var purchases: [StoreKit.Transaction] = []
-                for productID in skClient.productIDs {
-                    if let last = try await skClient.lastPurchase(productID) {
-                        purchases.append(last)
-                    }
-                }
-                
-                lastPurchase = purchases.sorted(by: {$0.purchaseDate < $1.purchaseDate}).last
-            } catch {
-                if let customError = error as? IAPError {
-                    purchaseError = customError
-                } else {
-                    purchaseError = .system(error)
-                }
-            }
-        }
-    }
+//    func checkForPastPurchases() {
+//        Task {
+//            do {
+//                var purchases: [StoreKit.Transaction] = []
+//                for productID in skClient.productIDs {
+//                    if let last = try await skClient.lastPurchase(productID) {
+//                        purchases.append(last)
+//                    }
+//                }
+//                
+//                lastPurchase = purchases.sorted(by: {$0.purchaseDate < $1.purchaseDate}).last
+//            } catch {
+//                if let customError = error as? IAPError {
+//                    purchaseError = customError
+//                } else {
+//                    purchaseError = .system(error)
+//                }
+//            }
+//        }
+//    }
 }
 
 #Preview {

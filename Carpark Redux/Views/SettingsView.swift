@@ -59,7 +59,7 @@ struct SettingsView: View {
                 }
                 
                 Section("In-App Purchase") {
-                    NavigationLink("🤑 Tip Jar", destination: ShopView())
+                    NavigationLink("🫙 Tip Jar", destination: ShopView())
                 }
             }
             .fontWeight(.medium)
@@ -68,12 +68,6 @@ struct SettingsView: View {
             .onAppear {
                 if vm.shouldAskForReview() {
                     requestReview()
-                }
-                
-                Task {
-                    let p = await storeKitClient.products
-                    let names = p.map({$0.displayName}).joined(separator: " - ")
-                    print("^^ \(names)")
                 }
             }
             .presentationDragIndicator(.visible)

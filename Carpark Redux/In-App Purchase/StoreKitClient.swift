@@ -14,12 +14,16 @@ actor StoreKitClient {
 
     let salesPitch: String = "I'm an independant software developer in Los Angeles, California. I first made this app back in 2015 when I was living next to Dodger Stadium and often had to get creative with my parking on game nights. Since then I've continued to refine the app and add new features to make it even better. If you enjoy Carpark, please consider throwing a tip my way! It'll help fund future development, in addition to earning you my immense grattitude 😊"
     
-    let productIDs: Set<Product.ID> = [
-        "com.johnslevin.Carpark.iap.goodTip",
-        "com.johnslevin.Carpark.iap.greatTip",
-        "com.johnslevin.Carpark.iap.phenomenalTip",
-        "com.johnslevin.Carpark.iap.unfathomableTip"
+    let productNames: [String:String] = [
+        "com.johnslevin.Carpark.iap.goodTip": "Good Tip",
+        "com.johnslevin.Carpark.iap.greatTip": "Great Tip",
+        "com.johnslevin.Carpark.iap.phenomenalTip": "Phenomenal Tip",
+        "com.johnslevin.Carpark.iap.unfathomableTip": "Unfathomable Tip"
     ]
+    
+    var productIDs: Set<Product.ID> {
+        return Set(productNames.keys)
+    }
     
     init() {
         Task {
@@ -60,6 +64,8 @@ actor StoreKitClient {
                 do {
                     let transaction = try await self.checkVerified(result)
                     await transaction.finish()
+                    
+                    await self.savePurchaseData(transaction)
                 } catch {
                     print("^^ Transaction listener: \(error)")
                 }
@@ -78,8 +84,7 @@ actor StoreKitClient {
                         case .success(let verificationResult):
                             let transaction = try checkVerified(verificationResult)
                             await transaction.finish()
-                            
-                            // TODO: Mark in SwiftData that a purchase has been made? Or just use isPurchased?
+                            await savePurchaseData(transaction)
                         case .pending:
                             throw IAPError.purchasePending
                         default:
@@ -95,6 +100,16 @@ actor StoreKitClient {
         }
     }
     
+    @MainActor
+    private func savePurchaseData(_ transaction: Transaction) {
+        let iap = InAppPurchase(transaction: transaction)
+        DataCenter.shared.container.mainContext.insert(iap)
+        do {
+            try DataCenter.shared.container.mainContext.save()
+        } catch {
+            print("^^ Error saving purchase data: \(error)")
+        }
+    }
 
     private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
